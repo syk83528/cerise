@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:cerise/tools/meta/meta.dart';
+import 'package:get/get.dart';
 
 import 'init_native.dart' if (dart.library.html) 'init_web.dart';
 
@@ -11,7 +10,6 @@ Future<void> initialize() async {
   configureApp();
 
   HttpOverrides.global = _HttpOverrides();
-  await Meta.init();
 }
 
 Future<void> initializeLate() async {
@@ -31,5 +29,18 @@ class _HttpOverrides extends HttpOverrides {
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
+  }
+
+  @override
+  String findProxyFromEnvironment(Uri url, Map<String, String>? environment) {
+    environment = environment ?? {};
+    if (GetPlatform.isLinux) {
+      environment['http_proxy'] = '127.0.0.1:8889';
+      environment['https_proxy'] = '127.0.0.1:8889';
+    } else if (GetPlatform.isWindows) {
+      environment['http_proxy'] = '127.0.0.1:10809';
+      environment['https_proxy'] = '127.0.0.1:10809';
+    }
+    return super.findProxyFromEnvironment(url, environment);
   }
 }

@@ -16,7 +16,7 @@ class Git {
   static String _getImagePath(String name) => '$_library/$name/image';
   static String _getVideoPath(String name) => '$_library/$name/video';
 
-  static init({
+  static Future<void> init({
     required String owner,
     required String repo,
     bool private = false,
@@ -27,6 +27,13 @@ class Git {
     _private = private;
     _slug = RepositorySlug(_owner, _repo);
     await _initCache();
+
+    final ins = await SharedPreferences.getInstance();
+    if (token == null) {
+      token = ins.getString('token');
+    } else {
+      await ins.setString('token', token);
+    }
 
     final tk = token == null
         ? findAuthenticationFromEnvironment()
@@ -41,15 +48,13 @@ class Git {
     final registry = ins.getString(_registry);
 
     if (registry == null) {
-      _currentRegistry =
-          'https://raw.githubusercontent.com/$_owner/$_repo/main/';
+      _currentRegistry = 'https://cdn.jsdelivr.net/gh/$_owner/$_repo@latest/';
       return;
     }
-    if (registry.contains('/$_owner/$_repo/')) {
+    if (registry.contains('/$_owner/$_repo')) {
       _currentRegistry = registry;
     } else {
-      _currentRegistry =
-          'https://raw.githubusercontent.com/$_owner/$_repo/main/';
+      _currentRegistry = 'https://cdn.jsdelivr.net/gh/$_owner/$_repo@latest/';
       await ins.setString(_registry, _currentRegistry);
     }
   }
@@ -121,10 +126,15 @@ class Git {
       _currentRegistry =
           'https://raw.githubusercontent.com/$_owner/$_repo/main/';
     } else {
-      _currentRegistry = 'https://cdn.jsdelivr.net/gh/$_owner/$_repo/';
+      _currentRegistry = 'https://cdn.jsdelivr.net/gh/$_owner/$_repo@latest/';
     }
 
     final ins = await SharedPreferences.getInstance();
     await ins.setString(_registry, _currentRegistry);
+  }
+
+  static Future<List<String?>> getProfile() async {
+    final user = await _git.users.getCurrentUser();
+    return [user.name, user.avatarUrl];
   }
 }
