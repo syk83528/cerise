@@ -1,4 +1,4 @@
-.PHONY: android androidv icon splash deploy
+.PHONY: android androidv icon splash deploy msix
 
 
 android:
@@ -21,5 +21,5 @@ deploy:
 #	git remote add origin https://github.com/mocaraka/mocaraka.github.io.git && \
 
 msix:
-	flutter build windows -v
-	flutter pub run msix:create
+	@flutter build windows -v
+	@flutter pub run msix:create
