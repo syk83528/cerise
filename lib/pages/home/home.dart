@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import 'package:cerise/pages/name/name.dart';
 import 'package:cerise/pages/profile/profile.dart';
-import 'package:cerise/pages/video/video.dart';
 import 'package:cerise/pages/work/work.dart';
 
 import 'controller.dart';
@@ -22,8 +21,8 @@ class HomePage extends StatelessWidget {
           index: _controller.currentIndex.value,
           children: [
             WorkPage(),
-            NamePage(),
-            VideoPage(),
+            NamePage(isVideo: false),
+            NamePage(isVideo: true),
             ProfilePage(),
           ],
         ),

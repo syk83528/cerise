@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 
 import 'package:cerise/tools/git/git.dart';
 
-class ImageController extends GetxController {
+class VideoController extends GetxController {
   final name = ''.obs;
-  final images = <String>[].obs;
+  final urls = <String>[].obs;
+
 
   @override
   void onInit() {
@@ -19,7 +20,7 @@ class ImageController extends GetxController {
     if (tName == null) return;
 
     name.value = tName;
-    final result = await Git.browserImages(tName);
+    final result = await Git.browserVideos(tName);
     if (result == null) {
       final snackBar = SnackBar(content: Text('获取失败'));
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
@@ -27,7 +28,7 @@ class ImageController extends GetxController {
     }
     for (String? element in result) {
       if (element != null) {
-        images.add(element);
+        urls.add(element);
       }
     }
   }

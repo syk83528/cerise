@@ -4,7 +4,7 @@ import 'routes.dart' as r;
 export 'namespace.dart';
 
 class RouterX {
-  static const initRoute = RoutesNamespace.verify;
+  static const initRoute = RoutesNamespace.entry;
 
   static final routes = r.routes;
 }

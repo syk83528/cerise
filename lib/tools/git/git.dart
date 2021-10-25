@@ -14,7 +14,8 @@ class Git {
   static const _registry = 'registry';
   static const _library = 'library';
   static String _getImagePath(String name) => '$_library/$name/image';
-  static String _getVideoPath(String name) => '$_library/$name/video';
+  static String _getVideoPath(String name) =>
+      '$_library/${Uri.encodeComponent(name)}/video';
 
   static Future<void> init({
     required String owner,
@@ -113,10 +114,12 @@ class Git {
         await _git.repositories.getContents(_slug, _getVideoPath(name));
 
     if (_private) {
-      return result.tree?.map((e) => e.downloadUrl).toList();
+      return result.tree
+          ?.map((e) => Uri.encodeComponent(e.downloadUrl!))
+          .toList();
     } else {
       return result.tree
-          ?.map((e) => '$_currentRegistry${_getImagePath(name)}/${e.name}')
+          ?.map((e) => '$_currentRegistry${_getVideoPath(name)}/${e.name}')
           .toList();
     }
   }

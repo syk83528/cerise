@@ -4,4 +4,5 @@ class RoutesNamespace {
   static const verify = '/verify';
   static const entry = '/entry';
   static const image = '/image';
+  static const video = '/video';
 }
