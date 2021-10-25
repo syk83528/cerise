@@ -33,7 +33,7 @@ dev_dependencies:
   get_cli: 1.6.0
   flutter_native_splash: 1.2.4
   flutter_launcher_icons: 0.9.2
-  msix: 2.5.0
+  msix: 2.4.2
 
 
 flutter:
