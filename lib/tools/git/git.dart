@@ -71,8 +71,16 @@ class Git {
       throw e.toString();
     }
 
-    await _createFile(path: '.cerise/.lockfile', content: '');
-    await _createFile(path: 'library/.keepfile', content: '');
+    await _createFile(
+      path: '.cerise/.lockfile',
+      content: DateTime.now().millisecondsSinceEpoch.toString(),
+      message: 'lockfile',
+    );
+    await _createFile(
+      path: 'library/.keepfile',
+      content: '',
+      message: 'keepfile',
+    );
   }
 
   static _createFile({
@@ -82,7 +90,7 @@ class Git {
   }) async {
     final file = CreateFile(
       path: path,
-      message: message,
+      message: message ?? 'Create new file',
       content: base64Encode(utf8.encode(content)).toString(),
     );
     await _git.repositories.createFile(_slug, file);
@@ -91,7 +99,11 @@ class Git {
   /// Browse all file names included in `_library` floder
   static Future<List<String?>?> browseLibrary() async {
     final result = await _git.repositories.getContents(_slug, _library);
-    return result.tree?.map((e) => e.name).toList();
+    return result.tree?.map((e) {
+      if (e.name != '.keepfile') {
+        return e.name;
+      }
+    }).toList();
   }
 
   /// Browse all file names included in `$_library/$name/image` floder
