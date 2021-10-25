@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import 'package:cerise/router/router.dart';
@@ -18,7 +19,7 @@ class Core extends StatelessWidget {
       scrollBehavior: _CustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
       enableLog: !kReleaseMode,
-      builder: Preview.builder,
+      builder: EasyLoading.init(builder: Preview.builder),
       locale: Preview.locale(context),
       getPages: RouterX.routes,
       initialRoute: RouterX.initRoute,
