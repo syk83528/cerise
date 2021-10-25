@@ -17,6 +17,7 @@ class VideoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Obx(
         () => PageView.builder(
           physics: ScrollX.physics,
