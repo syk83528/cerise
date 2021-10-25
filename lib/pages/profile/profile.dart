@@ -34,6 +34,23 @@ class ProfilePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              SizedBox(height: 12),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  primary: _controller.isGitHub.value ? Colors.black : Colors.red[300],
+                ),
+                onPressed: _controller.switchRegistry,
+                child: Text(
+                  _controller.isGitHub.value ? 'GitHub' : 'JSDelivr',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: _controller.isGitHub.value ? Colors.white : Colors.black,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

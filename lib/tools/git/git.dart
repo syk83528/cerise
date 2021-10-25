@@ -63,7 +63,7 @@ class Git {
     final ins = await SharedPreferences.getInstance();
     final registry = ins.getString(_registry);
 
-    if (registry == null) {
+    if (registry == null || registry.isEmpty) {
       _currentRegistry = 'https://cdn.jsdelivr.net/gh/$_owner/$_repo@latest/';
       return;
     }
@@ -142,8 +142,12 @@ class Git {
 
     if (_private) {
       return result.tree
-          ?.map((e) => Uri.encodeComponent(e.downloadUrl!))
-          .toList();
+          ?.map((e) {
+        final url = e.downloadUrl;
+        if (url == null) return null;
+        final temp = '$_currentRegistry${_getVideoPath(name)}/${e.name}';
+        return '$temp?${url.split('?').last}';
+      }).toList();
     } else {
       return result.tree
           ?.map((e) => '$_currentRegistry${_getVideoPath(name)}/${e.name}')
@@ -151,8 +155,18 @@ class Git {
     }
   }
 
-  static Future<void> switchRegistry(bool useGitHub) async {
-    if (useGitHub) {
+  static Future<List<String?>> getProfile() async {
+    final user = await _git.users.getCurrentUser();
+    return [user.name, user.avatarUrl];
+  }
+
+  static bool get registryIsGitHub =>
+      _currentRegistry.contains('raw.githubusercontent.com');
+
+  static Future<void> switchRegistry(bool isGitHub) async {
+    if (isGitHub == registryIsGitHub) return;
+
+    if (isGitHub) {
       _currentRegistry =
           'https://raw.githubusercontent.com/$_owner/$_repo/main/';
     } else {
@@ -161,10 +175,5 @@ class Git {
 
     final ins = await SharedPreferences.getInstance();
     await ins.setString(_registry, _currentRegistry);
-  }
-
-  static Future<List<String?>> getProfile() async {
-    final user = await _git.users.getCurrentUser();
-    return [user.name, user.avatarUrl];
   }
 }
