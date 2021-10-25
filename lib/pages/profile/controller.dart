@@ -18,6 +18,8 @@ class ProfileController extends GetxController {
     final profile = await Git.getProfile();
     username.value = profile[0] ?? 'Unknown';
     avatar.value = profile[1] ?? '';
+
+    isGitHub.value = Git.registryIsGitHub;
   }
 
   Future<void> switchRegistry() async {

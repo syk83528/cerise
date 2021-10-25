@@ -84,6 +84,10 @@ class Git {
       await _git.repositories.createRepository(repository);
     } catch (e) {
       throw e.toString();
+    } finally {
+      if (_private) {
+        await switchRegistry(true);
+      }
     }
 
     await _createFile(
@@ -140,19 +144,18 @@ class Git {
     final result =
         await _git.repositories.getContents(_slug, _getVideoPath(name));
 
-    if (_private) {
-      return result.tree
-          ?.map((e) {
-        final url = e.downloadUrl;
-        if (url == null) return null;
-        final temp = '$_currentRegistry${_getVideoPath(name)}/${e.name}';
+    return result.tree?.map((e) {
+      final url = e.downloadUrl;
+      if (url == null || e.name == null) return null;
+
+      if (_private) {
+        final temp =
+            'https://raw.githubusercontent.com/$_owner/$_repo/main/${_getVideoPath(name)}/${Uri.encodeComponent(e.name!)}';
         return '$temp?${url.split('?').last}';
-      }).toList();
-    } else {
-      return result.tree
-          ?.map((e) => '$_currentRegistry${_getVideoPath(name)}/${e.name}')
-          .toList();
-    }
+      }
+
+      return '$_currentRegistry${_getVideoPath(name)}/${Uri.encodeComponent(e.name!)}';
+    }).toList();
   }
 
   static Future<List<String?>> getProfile() async {
