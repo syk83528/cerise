@@ -16,31 +16,40 @@ class VideoPlayerOther extends StatefulWidget {
 }
 
 class _VideoPlayerOtherState extends State<VideoPlayerOther> {
-  static final _random = Random(DateTime.now().millisecondsSinceEpoch);
-  final Player player = Player(id: _random.nextInt(65536))
-    ..setPlaylistMode(PlaylistMode.repeat);
+  late final Player _player;
+  bool _fullScreen = false;
 
   @override
   void initState() {
     super.initState();
 
     final media = Media.network(widget.video);
-    player.open(media, autoStart: true);
+    _player = Player(id: Random().nextInt(65536))
+      ..setPlaylistMode(PlaylistMode.repeat)
+      ..open(media, autoStart: true);
   }
 
   @override
   void dispose() {
-    player.dispose();
+    _player.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => player.playOrPause(),
-      child: Video(
-        player: player,
-        showControls: false,
+    return RotatedBox(
+      quarterTurns: _fullScreen ? 1 : 0,
+      child: GestureDetector(
+        onTap: () => _player.playOrPause(),
+        onLongPress: () {
+          setState(() {
+            _fullScreen = !_fullScreen;
+          });
+        },
+        child: Video(
+          player: _player,
+          showControls: false,
+        ),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 
-
 class VideoPlayer extends StatefulWidget {
   const VideoPlayer({
     Key? key,
@@ -71,7 +70,7 @@ class CustomFijkPanel extends StatefulWidget {
     required this.context,
     required this.viewSize,
     required this.texturePos,
-  }):super(key: key);
+  }) : super(key: key);
 
   @override
   _CustomFijkPanelState createState() => _CustomFijkPanelState();
@@ -80,6 +79,7 @@ class CustomFijkPanel extends StatefulWidget {
 class _CustomFijkPanelState extends State<CustomFijkPanel> {
   FijkPlayer get player => widget.player;
   bool _playing = false;
+  bool _fullScreen = false;
 
   @override
   void initState() {
@@ -105,6 +105,16 @@ class _CustomFijkPanelState extends State<CustomFijkPanel> {
         child: SizedBox.expand(),
         onTap: () {
           _playing ? widget.player.pause() : widget.player.start();
+        },
+        onLongPress: () {
+          if (_fullScreen) {
+            widget.player.exitFullScreen();
+          } else {
+            widget.player.enterFullScreen();
+          }
+          setState(() {
+            _fullScreen = !_fullScreen;
+          });
         },
       ),
     );

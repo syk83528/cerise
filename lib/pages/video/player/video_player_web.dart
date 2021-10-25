@@ -14,7 +14,9 @@ class VideoPlayerOther extends StatefulWidget {
 }
 
 class _VideoPlayerOtherState extends State<VideoPlayerOther> {
-  late VideoPlayerController _controller;
+  late final VideoPlayerController _controller;
+  bool _playing = false;
+  bool _fullScreen = false;
 
   @override
   void initState() {
@@ -24,6 +26,7 @@ class _VideoPlayerOtherState extends State<VideoPlayerOther> {
       ..initialize().then(
         (_) => setState(
           () {
+            _playing = true;
             _controller.play();
           },
         ),
@@ -39,7 +42,35 @@ class _VideoPlayerOtherState extends State<VideoPlayerOther> {
   @override
   Widget build(BuildContext context) {
     return _controller.value.isInitialized
-        ? VideoPlayer(_controller)
-        : Center(child: Text('Loading...'));
+        ? RotatedBox(
+            quarterTurns: _fullScreen ? 1 : 0,
+            child: InkWell(
+              child: VideoPlayer(_controller),
+              onTap: () async {
+                if (_playing) {
+                  await _controller.pause();
+                } else {
+                  await _controller.play();
+                }
+                setState(() {
+                  _playing = !_playing;
+                });
+              },
+              onLongPress: () {
+                setState(() {
+                  _fullScreen = !_fullScreen;
+                });
+              },
+            ),
+          )
+        : Center(
+            child: Text(
+              'Loading...',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
   }
 }
