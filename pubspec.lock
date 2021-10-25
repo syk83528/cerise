@@ -197,13 +197,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.10.0"
-  fijkplayer_skin:
-    dependency: "direct main"
-    description:
-      name: fijkplayer_skin
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.2.6"
   file:
     dependency: transitive
     description:
@@ -476,6 +469,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.4.0"
+  photo_view:
+    dependency: "direct main"
+    description:
+      name: photo_view
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.13.0"
   platform:
     dependency: transitive
     description:
@@ -733,41 +733,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.4"
-  wakelock:
-    dependency: transitive
-    description:
-      name: wakelock
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.5.6"
-  wakelock_macos:
-    dependency: transitive
-    description:
-      name: wakelock_macos
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.4.0"
-  wakelock_platform_interface:
-    dependency: transitive
-    description:
-      name: wakelock_platform_interface
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.0"
-  wakelock_web:
-    dependency: transitive
-    description:
-      name: wakelock_web
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.4.0"
-  wakelock_windows:
-    dependency: transitive
-    description:
-      name: wakelock_windows
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.0"
   watcher:
     dependency: transitive
     description:

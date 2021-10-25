@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/pages/look/look.dart';
 import 'package:cerise/styles/styles.dart';
 
 import 'controller.dart';
@@ -29,13 +30,18 @@ class ImagePage extends StatelessWidget {
           ),
           itemCount: _controller.images.length,
           itemBuilder: (context, index) {
-            return ClipRRect(
-              child: Image.network(
-                _controller.images.elementAt(index),
-                fit: BoxFit.cover,
-                cacheWidth: 120,
+            return InkWell(
+              onTap: () async {
+                await Get.to(LookPage(url: _controller.images[index]));
+              },
+              child: ClipRRect(
+                child: Image.network(
+                  _controller.images.elementAt(index),
+                  fit: BoxFit.cover,
+                  cacheWidth: 160,
+                ),
+                borderRadius: BorderRadius.circular(16),
               ),
-              borderRadius: BorderRadius.circular(16),
             );
           },
         ),
