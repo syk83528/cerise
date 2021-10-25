@@ -18,18 +18,33 @@ class Git {
       '$_library/${Uri.encodeComponent(name)}/video';
 
   static Future<void> init({
-    required String owner,
-    required String repo,
+    String? owner,
+    String? repo,
     bool private = false,
     String? token,
   }) async {
-    _owner = owner;
-    _repo = repo;
+    final ins = await SharedPreferences.getInstance();
+    if (owner == null) {
+      final temp = ins.getString('owner');
+      if (temp == null || temp.isEmpty) throw 'Please entry owner';
+      _owner = temp;
+    } else {
+      _owner = owner;
+      await ins.setString('owner', _owner);
+    }
+    if (repo == null) {
+      final temp = ins.getString('repo');
+      if (temp == null || temp.isEmpty) throw 'Please entry repo';
+      _repo = temp;
+    } else {
+      _repo = repo;
+      await ins.setString('repo', _repo);
+    }
+
     _private = private;
     _slug = RepositorySlug(_owner, _repo);
     await _initCache();
 
-    final ins = await SharedPreferences.getInstance();
     if (token == null) {
       token = ins.getString('token');
     } else {

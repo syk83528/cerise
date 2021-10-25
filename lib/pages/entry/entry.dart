@@ -35,12 +35,11 @@ class EntryPage extends StatelessWidget {
             SizedBox(height: 32),
             ElevatedButton(
               onPressed: () async {
-                final tk = _controller3.text.isEmpty ? null : _controller3.text;
                 try {
                   await Git.init(
-                    owner: _controller1.text,
-                    repo: _controller2.text,
-                    token: tk,
+                    owner: _controller1.text.isEmpty ? null : _controller1.text,
+                    repo: _controller2.text.isEmpty ? null : _controller2.text,
+                    token: _controller3.text.isEmpty ? null : _controller3.text,
                   );
                 } catch (e) {
                   final snackBar = SnackBar(content: Text(e.toString()));
@@ -70,8 +69,9 @@ class EntryPage extends StatelessWidget {
         fillColor: Colors.grey[200],
         hintText: hintText,
         hintStyle: TextStyle(fontWeight: FontWeight.bold),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(32),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
