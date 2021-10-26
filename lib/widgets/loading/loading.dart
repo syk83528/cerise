@@ -4,7 +4,7 @@ class Loading {
   static Future<void> show(String text) async {
     await EasyLoading.show(
       status: text,
-      dismissOnTap: true,
+      maskType: EasyLoadingMaskType.clear,
     );
   }
 
