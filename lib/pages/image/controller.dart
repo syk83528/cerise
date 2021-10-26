@@ -95,9 +95,10 @@ class ImageController extends GetxController {
       final image = await _selectImage();
       if (image == null) return;
 
-      final gitpath = 'library/${name.value}/image/${image.name}';
       Loading.show('上传中');
-      await Git.createFile(gitpath: gitpath, filepath: image.path);
+      final data = await image.readAsBytes();
+      final gitpath = 'library/${name.value}/image/${image.name}';
+      await Git.createFile(gitpath: gitpath, data: data);
       snackBar = SnackBar(content: Text('上传成功: ${image.name}'));
     } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));

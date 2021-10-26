@@ -71,9 +71,10 @@ class VideoController extends GetxController {
       final video = await _selectVideo();
       if (video == null) return;
 
-      final gitpath = 'library/${name.value}/video/${video.name}';
       Loading.show('上传中');
-      await Git.createFile(gitpath: gitpath, filepath: video.path);
+      final data = await video.readAsBytes();
+      final gitpath = 'library/${name.value}/video/${video.name}';
+      await Git.createFile(gitpath: gitpath, data: data);
       snackBar = SnackBar(content: Text('上传成功: ${video.name}'));
     } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
