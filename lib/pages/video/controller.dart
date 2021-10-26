@@ -24,6 +24,7 @@ class VideoController extends GetxController {
     final tName = Get.parameters['name'];
     if (tName == null) return;
 
+    late final SnackBar snackBar;
     try {
       Loading.show('加载中');
       name.value = tName;
@@ -38,11 +39,12 @@ class VideoController extends GetxController {
           }
         }
       }
+      snackBar = SnackBar(content: Text('获取视频成功: 共${urls.length}个'));
     } catch (e) {
-      final snackBar = SnackBar(content: Text(e.toString()));
-      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+      snackBar = SnackBar(content: Text(e.toString()));
     } finally {
       await Loading.close();
+      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
     }
   }
 
