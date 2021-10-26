@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:cerise/tools/browser/browser.dart';
 import 'package:cerise/tools/git/git.dart';
 import 'package:cerise/tools/shares/shares.dart';
 import 'package:cerise/widgets/loading/loading.dart';
@@ -53,9 +54,14 @@ class VideoController extends GetxController {
   }
 
   Future<void> shareVideo() async {
-    final currentIndex = urls.elementAt(index.value);
-    final text = '来自Cerise分享的视频：$currentIndex。快去打开查看叭！🔥🔥';
+    final url = urls.elementAt(index.value);
+    final text = '来自Cerise分享的视频：$url。快去打开查看叭！🔥🔥';
     await Shares.share(text);
+  }
+
+  Future<void> openBrowserVideo() async {
+    final url = urls.elementAt(index.value);
+    await Browser.launchUrl(url);
   }
 
   Future<void> selectAndupload() async {

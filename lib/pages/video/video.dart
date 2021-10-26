@@ -35,9 +35,9 @@ class VideoPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              onPressed: _controller.selectAndupload,
+              onPressed: _controller.openBrowserVideo,
               icon: Icon(
-                Icons.cloud_upload_rounded,
+                Icons.open_in_browser_rounded,
                 color: Colors.white,
               ),
             ),
@@ -45,6 +45,13 @@ class VideoPage extends StatelessWidget {
               onPressed: _controller.shareVideo,
               icon: Icon(
                 Icons.share_rounded,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: _controller.selectAndupload,
+              icon: Icon(
+                Icons.cloud_upload_rounded,
                 color: Colors.white,
               ),
             ),
