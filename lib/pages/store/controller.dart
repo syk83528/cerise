@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:cerise/tools/git/git.dart';
 
-class NameController extends GetxController {
+class StoreController extends GetxController {
   final names = <String>[].obs;
 
   @override

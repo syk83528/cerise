@@ -6,10 +6,10 @@ import 'package:cerise/styles/styles.dart';
 
 import 'controller.dart';
 
-class NamePage extends StatelessWidget {
-  NamePage({Key? key}) : super(key: key);
+class StorePage extends StatelessWidget {
+  StorePage({Key? key}) : super(key: key);
 
-  final _controller = Get.put(NameController());
+  final _controller = Get.put(StoreController());
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:cerise/pages/name/name.dart';
 import 'package:cerise/pages/night/night.dart';
 import 'package:cerise/pages/profile/profile.dart';
+import 'package:cerise/pages/store/store.dart';
 import 'package:cerise/pages/work/work.dart';
 
 import 'controller.dart';
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           index: _controller.currentIndex.value,
           children: [
             WorkPage(),
-            NamePage(),
+            StorePage(),
             NightPage(),
             ProfilePage(),
           ],
