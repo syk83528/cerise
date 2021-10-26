@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:cerise/pages/name/name.dart';
+import 'package:cerise/pages/night/night.dart';
 import 'package:cerise/pages/profile/profile.dart';
 import 'package:cerise/pages/work/work.dart';
 
@@ -21,8 +22,8 @@ class HomePage extends StatelessWidget {
           index: _controller.currentIndex.value,
           children: [
             WorkPage(),
-            NamePage(isVideo: false),
-            NamePage(isVideo: true),
+            NamePage(),
+            NightPage(),
             ProfilePage(),
           ],
         ),
@@ -34,11 +35,11 @@ class HomePage extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.camera_circle_fill),
-              label: '图库',
+              label: '仓库',
             ),
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.videocam_circle_fill),
-              label: '视频',
+              icon: Icon(CupertinoIcons.moon_circle_fill),
+              label: '夜晚',
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.person_circle_fill),

@@ -18,25 +18,62 @@ class VideoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Obx(
-        () => PageView.builder(
-          physics: ScrollX.physics,
-          scrollDirection: Axis.vertical,
-          itemCount: _controller.urls.length,
-          itemBuilder: (context, index) {
-            if (GetPlatform.isMobile) {
-              return VideoPlayer(
-                video: _controller.urls[index],
-              );
-            } else if (GetPlatform.isWeb || GetPlatform.isDesktop) {
-              return VideoPlayerOther(
-                video: _controller.urls[index],
-              );
-            }
+      body: Stack(
+        children: [
+          _videoView(),
+          _opsView(),
+        ],
+      ),
+    );
+  }
 
-            return SizedBox();
-          },
+  Widget _opsView() {
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.topRight,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: _controller.selectAndupload,
+              icon: Icon(
+                Icons.cloud_upload_rounded,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: _controller.shareVideo,
+              icon: Icon(
+                Icons.share_rounded,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _videoView() {
+    return Obx(
+      () => PageView.builder(
+        physics: ScrollX.physics,
+        scrollDirection: Axis.vertical,
+        onPageChanged: _controller.onPage,
+        itemCount: _controller.urls.length,
+        itemBuilder: (context, index) {
+          if (GetPlatform.isMobile) {
+            return VideoPlayer(
+              video: _controller.urls[index],
+            );
+          } else if (GetPlatform.isWeb || GetPlatform.isDesktop) {
+            return VideoPlayerOther(
+              video: _controller.urls[index],
+            );
+          }
+
+          return SizedBox();
+        },
       ),
     );
   }

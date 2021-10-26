@@ -1,12 +1,17 @@
-import 'package:cerise/widgets/loading/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:cerise/tools/git/git.dart';
+import 'package:cerise/tools/shares/shares.dart';
+import 'package:cerise/widgets/loading/loading.dart';
 
 class VideoController extends GetxController {
   final name = ''.obs;
   final urls = <String>[].obs;
+  final index = 0.obs;
+
+  static VideoController get to => Get.find();
 
   @override
   void onInit() {
@@ -36,5 +41,43 @@ class VideoController extends GetxController {
     } finally {
       await Loading.close();
     }
+  }
+
+  void onPage(int page) {
+    index.value = page;
+  }
+
+  Future<void> shareVideo() async {
+    final currentIndex = urls.elementAt(index.value);
+    final text = '来自Cerise分享的视频：$currentIndex。快去打开查看叭！🔥🔥';
+    await Shares.share(text);
+  }
+
+  Future<void> selectAndupload() async {
+    late final SnackBar snackBar;
+
+    try {
+      final video = await _selectVideo();
+      if (video == null) return;
+
+      final gitpath = 'library/${name.value}/video/${video.name}';
+      Loading.show('上传中');
+      await Git.createFile(gitpath: gitpath, filepath: video.path);
+      snackBar = SnackBar(content: Text('上传成功: ${video.name}'));
+    } catch (e) {
+      snackBar = SnackBar(content: Text(e.toString()));
+    } finally {
+      await Loading.close();
+      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    }
+  }
+
+  Future<XFile?> _selectVideo() async {
+    if (GetPlatform.isDesktop) {
+      throw UnimplementedError('Upload videos');
+    }
+
+    final picker = ImagePicker();
+    return await picker.pickVideo(source: ImageSource.gallery);
   }
 }

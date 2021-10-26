@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 import 'package:github/github.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -113,6 +114,18 @@ class Git {
       content: base64Encode(utf8.encode(content)).toString(),
     );
     await _git.repositories.createFile(_slug, file);
+  }
+
+  static Future<void> createFile({
+    required String gitpath,
+    required String filepath,
+    String? message,
+  }) async {
+    final file = File(filepath);
+    if (!(await file.exists())) throw 'the file isnot exists';
+
+    final data = await file.readAsString();
+    await _createFile(path: gitpath, content: data, message: message);
   }
 
   /// Browse all file names included in `_library` floder

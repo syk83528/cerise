@@ -20,9 +20,11 @@ dependencies:
   get: 4.3.8
   github: 8.2.3
   gesture_password_widget: 2.0.0
+  image_picker: 0.8.4+3
   permission_handler: 8.2.5
   photo_view: 0.13.0
   shared_preferences: 2.0.8
+  share_plus: 3.0.4
   url_launcher: 6.0.12
   video_player: 2.2.5
 
@@ -38,6 +40,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Girl
+      fonts:
+        - asset: assets/fonts/girl.ttf
 
 
 flutter_native_splash:

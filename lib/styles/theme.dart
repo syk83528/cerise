@@ -9,6 +9,8 @@ class ThemeX {
 
   static final _bottomNavigationBarTheme = BottomNavigationBarThemeData(
     selectedItemColor: ColorsX.primary,
+    selectedLabelStyle: TextStyle(fontFamily: 'Girl'),
+    unselectedLabelStyle: TextStyle(fontFamily: 'Girl'),
   );
 
   static const colorScheme = ColorScheme.light(
@@ -16,10 +18,18 @@ class ThemeX {
   );
 
   static final global = ThemeData.from(colorScheme: colorScheme).copyWith(
+    textTheme: TextTheme(
+      subtitle1: TextStyle(
+        fontFamily: 'Girl',
+        color: Colors.black,
+      ),
+      button: TextStyle(fontFamily: 'Girl'),
+    ),
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
+        fontFamily: 'Girl',
       ),
       backgroundColor: ColorsX.primary,
       iconTheme: IconThemeData(
@@ -39,11 +49,8 @@ class ThemeX {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        // padding: const EdgeInsets.symmetric(vertical: 16),
         primary: ColorsX.primary,
-        textStyle: TextStyle(
-            // fontSize: 18,
-            ),
+        onPrimary: Colors.black,
       ),
     ),
   );

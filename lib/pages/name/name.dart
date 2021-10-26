@@ -7,12 +7,7 @@ import 'package:cerise/styles/styles.dart';
 import 'controller.dart';
 
 class NamePage extends StatelessWidget {
-  NamePage({
-    Key? key,
-    required this.isVideo,
-  }) : super(key: key);
-
-  final bool isVideo;
+  NamePage({Key? key}) : super(key: key);
 
   final _controller = Get.put(NameController());
 
@@ -38,7 +33,7 @@ class NamePage extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios_rounded),
               onTap: () async {
                 final params = {'name': _controller.names[index]};
-                await Get.toNamed(isVideo ? RoutesNamespace.video:RoutesNamespace.image, parameters: params);
+                await Get.toNamed(RoutesNamespace.type, parameters: params);
               },
             );
           },
