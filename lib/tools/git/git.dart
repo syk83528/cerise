@@ -12,6 +12,8 @@ class Git {
   static late RepositorySlug _slug;
   static late String _currentRegistry;
 
+  static bool get isPrivate => _private;
+
   static const _registry = 'registry';
   static const _library = 'library';
   static String _getImagePath(String name) => '$_library/$name/image';

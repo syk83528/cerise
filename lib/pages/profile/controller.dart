@@ -23,7 +23,19 @@ class ProfileController extends GetxController {
   }
 
   Future<void> switchRegistry() async {
-    isGitHub.value = !isGitHub.value;
-    await Git.switchRegistry(isGitHub.value);
+    late final String message;
+
+    try {
+      if (Git.isPrivate) throw 'The repo is private!';
+
+      isGitHub.value = !isGitHub.value;
+      await Git.switchRegistry(isGitHub.value);
+
+      message = '更改成功';
+    } catch (e) {
+      message = e.toString();
+    } finally {
+      Get.snackbar('CDN源', message);
+    }
   }
 }

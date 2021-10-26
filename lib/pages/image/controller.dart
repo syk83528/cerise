@@ -38,6 +38,9 @@ class ImageController extends GetxController {
           }
         }
       }
+    } catch (e) {
+      final snackBar = SnackBar(content: Text(e.toString()));
+      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
     } finally {
       await Loading.close();
     }
