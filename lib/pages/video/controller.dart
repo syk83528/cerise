@@ -13,6 +13,8 @@ class VideoController extends GetxController {
   final urls = <String>[].obs;
   final index = 0.obs;
 
+  final PageController pageController = PageController();
+
   static VideoController get to => Get.find();
 
   @override
@@ -64,6 +66,47 @@ class VideoController extends GetxController {
 
   void onPage(int page) {
     index.value = page;
+  }
+
+  Future<void> replaceVideo() async {
+    final result = await showDialog(
+      context: Get.context!,
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Get.width * .1,
+            vertical: Get.height * .1,
+          ),
+          child: Material(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 32,
+              ),
+              child: ListView.builder(
+                itemCount: urls.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: CircleAvatar(
+                      child: Text((index + 1).toString()),
+                    ),
+                    title:
+                        Text(Uri.decodeComponent(urls[index].split('/').last)),
+                    onTap: () => Get.back(result: index),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    if (result == null) return;
+    pageController.jumpToPage(result);
   }
 
   Future<void> shareVideo() async {

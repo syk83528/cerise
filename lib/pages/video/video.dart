@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,9 +56,9 @@ class VideoPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          onPressed: _controller.openBrowserVideo,
+          onPressed: _controller.replaceVideo,
           icon: Icon(
-            Icons.open_in_browser_rounded,
+            CupertinoIcons.square_list_fill,
             color: Colors.white,
           ),
         ),
@@ -65,6 +66,13 @@ class VideoPage extends StatelessWidget {
           onPressed: _controller.shareVideo,
           icon: Icon(
             Icons.share_rounded,
+            color: Colors.white,
+          ),
+        ),
+        IconButton(
+          onPressed: _controller.openBrowserVideo,
+          icon: Icon(
+            Icons.open_in_browser_rounded,
             color: Colors.white,
           ),
         ),
@@ -89,6 +97,7 @@ class VideoPage extends StatelessWidget {
         physics: ScrollX.physics,
         scrollDirection: Axis.vertical,
         onPageChanged: _controller.onPage,
+        controller: _controller.pageController,
         itemCount: _controller.urls.length,
         itemBuilder: (context, index) {
           if (GetPlatform.isMobile) {
