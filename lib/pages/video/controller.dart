@@ -1,10 +1,11 @@
-import 'package:cerise/tools/screen/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:cerise/styles/styles.dart';
 import 'package:cerise/tools/browser/browser.dart';
 import 'package:cerise/tools/git/git.dart';
+import 'package:cerise/tools/screen/screen.dart';
 import 'package:cerise/tools/shares/shares.dart';
 import 'package:cerise/widgets/loading/loading.dart';
 
@@ -79,7 +80,7 @@ class VideoController extends GetxController {
           ),
           child: Material(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -87,6 +88,7 @@ class VideoController extends GetxController {
                 vertical: 32,
               ),
               child: ListView.builder(
+                physics: ScrollX.physics,
                 itemCount: urls.length,
                 itemBuilder: (context, index) {
                   return ListTile(
