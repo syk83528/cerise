@@ -1,3 +1,4 @@
+import 'package:cerise/tools/screen/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +20,12 @@ class VideoController extends GetxController {
     super.onInit();
 
     _init();
+  }
+
+  @override
+  void onClose() {
+    Screen.unlock();
+    super.onClose();
   }
 
   Future<void> _init() async {
@@ -50,6 +57,7 @@ class VideoController extends GetxController {
       await Loading.close();
       if (urls.isNotEmpty) {
         ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+        await Screen.lock();
       }
     }
   }
