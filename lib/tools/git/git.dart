@@ -16,6 +16,7 @@ class Git {
 
   static const _registry = 'registry';
   static const _library = 'library';
+  static const _keepfile = '.keepfile';
   static String _getImagePath(String name) => '$_library/$name/image';
   static String _getVideoPath(String name) =>
       '$_library/${Uri.encodeComponent(name)}/video';
@@ -96,16 +97,20 @@ class Git {
     await _createFile(
       path: '.cerise/.lockfile',
       content: DateTime.now().millisecondsSinceEpoch.toString(),
-      message: 'lockfile',
+      message: 'Create Lockfile',
     );
+    await _createKeepFile('library');
+  }
+
+  static Future<void> _createKeepFile(String path) async {
     await _createFile(
-      path: 'library/.keepfile',
+      path: '$path/$_keepfile',
       content: '',
-      message: 'keepfile',
+      message: 'Create Keepfile',
     );
   }
 
-  static _createFile({
+  static Future<ContentCreation> _createFile({
     required String path,
     required String content,
     String? message,
@@ -115,7 +120,12 @@ class Git {
       message: message ?? 'Create new file',
       content: base64Encode(utf8.encode(content)).toString(),
     );
-    await _git.repositories.createFile(_slug, file);
+    return await _git.repositories.createFile(_slug, file);
+  }
+
+  static Future<void> createIVKeepFile(String name) async {
+    await _createKeepFile(_getImagePath(name));
+    await _createKeepFile(_getVideoPath(name));
   }
 
   static Future<void> createFile({
@@ -146,13 +156,15 @@ class Git {
     final result =
         await _git.repositories.getContents(_slug, _getImagePath(name));
 
-    if (_private) {
-      return result.tree?.map((e) => e.downloadUrl).toList();
-    } else {
-      return result.tree
-          ?.map((e) => '$_currentRegistry${_getImagePath(name)}/${e.name}')
-          .toList();
-    }
+    return result.tree?.map((e) {
+      if (e.name == null || e.name == _keepfile) return null;
+
+      if (_private) {
+        return e.downloadUrl;
+      }
+
+      return '$_currentRegistry${_getImagePath(name)}/${e.name}';
+    }).toList();
   }
 
   /// Browse all file names included in `$_library/$name/video` floder
@@ -162,7 +174,7 @@ class Git {
 
     return result.tree?.map((e) {
       final url = e.downloadUrl;
-      if (url == null || e.name == null) return null;
+      if (url == null || e.name == null || e.name == _keepfile) return null;
 
       if (_private) {
         final temp =
@@ -195,4 +207,6 @@ class Git {
     final ins = await SharedPreferences.getInstance();
     await ins.setString(_registry, _currentRegistry);
   }
+
+  static String get repo => '$_owner/$_repo';
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:cerise/router/router.dart';
 import 'package:cerise/styles/styles.dart';
+import 'package:cerise/tools/git/git.dart';
 
 import 'controller.dart';
 
@@ -14,10 +15,28 @@ class StorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: appBar(),
       body: bodyView(),
+      floatingActionButton: floatingBtn(),
+    );
+  }
+
+  Widget floatingBtn() {
+    return FloatingActionButton(
+      onPressed: _controller.createEntry,
+      tooltip: '添加新项',
+      child: Icon(
+        Icons.add_rounded,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  AppBar appBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      centerTitle: true,
+      title: Text(Git.repo),
     );
   }
 
