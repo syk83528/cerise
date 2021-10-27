@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:cerise/router/router.dart';
+import 'package:cerise/widgets/button/button.dart';
 
 class TypePage extends StatelessWidget {
   TypePage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class TypePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackBtn(),
         title: Text(_name ?? ''),
         centerTitle: true,
       ),

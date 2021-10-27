@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:cerise/pages/look/look.dart';
 import 'package:cerise/styles/styles.dart';
+import 'package:cerise/widgets/button/button.dart';
 
 import 'controller.dart';
 
@@ -63,7 +64,7 @@ class _AppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: BackButton(),
+      leading: BackBtn(),
       title: Text(label),
       centerTitle: true,
       actions: [

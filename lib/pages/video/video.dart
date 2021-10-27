@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:cerise/styles/styles.dart';
+import 'package:cerise/widgets/button/button.dart';
 
 import 'player/video_player.dart';
 import 'player/video_player_desktop.dart'
@@ -30,10 +31,11 @@ class VideoPage extends StatelessWidget {
   Widget _opsView() {
     return SafeArea(
       child: Align(
-        alignment: Alignment.topRight,
+        alignment: Alignment.topCenter,
         child: Row(
-          mainAxisSize: MainAxisSize.min,
           children: [
+            BackBtn(),
+            Spacer(),
             IconButton(
               onPressed: _controller.openBrowserVideo,
               icon: Icon(
