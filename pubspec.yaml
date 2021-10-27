@@ -44,6 +44,8 @@ flutter:
     - family: Girl
       fonts:
         - asset: assets/fonts/girl.ttf
+  assets:
+    - assets/image/
 
 
 flutter_native_splash:

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:cerise/styles/styles.dart';
 import 'package:cerise/widgets/button/button.dart';
+import 'package:cerise/widgets/empty/empty.dart';
 
 import 'player/video_player.dart';
 import 'player/video_player_desktop.dart'
@@ -17,13 +18,15 @@ class VideoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          _videoView(),
-          _opsView(),
-        ],
+    return Obx(
+      () => Scaffold(
+        backgroundColor: _controller.urls.isEmpty ? Colors.white : Colors.black,
+        body: Stack(
+          children: [
+            _videoView(),
+            _opsView(),
+          ],
+        ),
       ),
     );
   }
@@ -32,40 +35,57 @@ class VideoPage extends StatelessWidget {
     return SafeArea(
       child: Align(
         alignment: Alignment.topCenter,
-        child: Row(
-          children: [
-            BackBtn(color: Colors.white),
-            Spacer(),
-            IconButton(
-              onPressed: _controller.openBrowserVideo,
-              icon: Icon(
-                Icons.open_in_browser_rounded,
-                color: Colors.white,
+        child: Obx(() {
+          return Row(
+            children: [
+              BackBtn(
+                color: _controller.urls.isEmpty ? Colors.black : Colors.white,
               ),
-            ),
-            IconButton(
-              onPressed: _controller.shareVideo,
-              icon: Icon(
-                Icons.share_rounded,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: _controller.selectAndupload,
-              icon: Icon(
-                Icons.cloud_upload_rounded,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
+              Spacer(),
+              _controller.urls.isEmpty ? SizedBox() : _moreOpsView(),
+            ],
+          );
+        }),
       ),
     );
   }
 
+  Widget _moreOpsView() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          onPressed: _controller.openBrowserVideo,
+          icon: Icon(
+            Icons.open_in_browser_rounded,
+            color: Colors.white,
+          ),
+        ),
+        IconButton(
+          onPressed: _controller.shareVideo,
+          icon: Icon(
+            Icons.share_rounded,
+            color: Colors.white,
+          ),
+        ),
+        IconButton(
+          onPressed: _controller.selectAndupload,
+          icon: Icon(
+            Icons.cloud_upload_rounded,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _videoView() {
-    return Obx(
-      () => PageView.builder(
+    return Obx(() {
+      if (_controller.urls.isEmpty) {
+        return Center(child: EmptyWidget());
+      }
+
+      return PageView.builder(
         physics: ScrollX.physics,
         scrollDirection: Axis.vertical,
         onPageChanged: _controller.onPage,
@@ -83,7 +103,7 @@ class VideoPage extends StatelessWidget {
 
           return SizedBox();
         },
-      ),
-    );
+      );
+    });
   }
 }

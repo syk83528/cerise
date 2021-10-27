@@ -40,12 +40,17 @@ class VideoController extends GetxController {
           }
         }
       }
-      snackBar = SnackBar(content: Text('获取视频成功: 共${urls.length}个'));
+
+      if (urls.isNotEmpty) {
+        snackBar = SnackBar(content: Text('获取视频成功: 共${urls.length}个'));
+      }
     } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
     } finally {
       await Loading.close();
-      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+      if (urls.isNotEmpty) {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+      }
     }
   }
 

@@ -39,12 +39,17 @@ class ImageController extends GetxController {
           }
         }
       }
-      snackBar = SnackBar(content: Text('获取图片成功: 共${images.length}张'));
+
+      if (images.isNotEmpty) {
+        snackBar = SnackBar(content: Text('获取图片成功: 共${images.length}张'));
+      }
     } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
     } finally {
       await Loading.close();
-      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+      if (images.isNotEmpty) {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+      }
     }
   }
 
