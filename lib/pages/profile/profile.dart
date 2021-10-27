@@ -26,24 +26,48 @@ class ProfilePage extends StatelessWidget {
 
   Widget _settingsView() {
     return Obx(
-      () => ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          primary: _controller.isGitHub.value ? Colors.black : Colors.red[300],
-        ),
-        onPressed: _controller.switchRegistry,
-        icon: Icon(
-          CupertinoIcons.arrow_2_circlepath_circle_fill,
-          color: Colors.white,
-        ),
-        label: Text(
-          _controller.isGitHub.value ? 'GitHub' : 'JSDelivr',
-          style: TextStyle(
-            color: _controller.isGitHub.value ? Colors.white : Colors.black,
+      () => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              primary:
+                  _controller.isGitHub.value ? Colors.black : Colors.red[300],
+            ),
+            onPressed: _controller.switchRegistry,
+            icon: Icon(
+              CupertinoIcons.arrow_2_circlepath_circle_fill,
+              color: Colors.white,
+            ),
+            label: Text(
+              _controller.isGitHub.value ? 'GitHub' : 'JSDelivr',
+              style: TextStyle(
+                color: _controller.isGitHub.value ? Colors.white : Colors.black,
+              ),
+            ),
           ),
-        ),
+          SizedBox(height: 12),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              primary: Colors.black,
+            ),
+            onPressed: _controller.changeVisual,
+            icon: Icon(
+              CupertinoIcons.arrow_2_circlepath_circle_fill,
+              color: Colors.white,
+            ),
+            label: Text(
+              _controller.isPrivate.value ? '私有' : '公开',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }

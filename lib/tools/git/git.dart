@@ -193,6 +193,7 @@ class Git {
 
   static bool get registryIsGitHub =>
       _currentRegistry.contains('raw.githubusercontent.com');
+  static bool get repoIsPrivate => _private;
 
   static Future<void> switchRegistry(bool isGitHub) async {
     if (isGitHub == registryIsGitHub) return;
@@ -209,4 +210,24 @@ class Git {
   }
 
   static String get repo => '$_owner/$_repo';
+
+  static Future<bool> changeRepoVisual() async {
+    await _git.repositories.editRepository(
+      _slug,
+      name: _repo,
+      description: '',
+      homepage: '',
+      private: !_private,
+      hasIssues: false,
+      hasWiki: false,
+      hasDownloads: false,
+    );
+
+    _private = !_private;
+    if (_private) {
+      await switchRegistry(true);
+    }
+
+    return _private;
+  }
 }
