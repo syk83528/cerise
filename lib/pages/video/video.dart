@@ -34,7 +34,7 @@ class VideoPage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Row(
           children: [
-            BackBtn(),
+            BackBtn(color: Colors.white),
             Spacer(),
             IconButton(
               onPressed: _controller.openBrowserVideo,
