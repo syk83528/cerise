@@ -35,7 +35,7 @@ class ImagePage extends StatelessWidget {
                     final url = _controller.images[index];
                     return InkWell(
                       borderRadius: BorderRadius.circular(16),
-                      onTap: () => Get.to(LookPage(url: url)),
+                      onTap: () => Get.to(() => LookPage(url: url)),
                       onLongPress: () => _controller.moreOps(url),
                       child: ClipRRect(
                         child: Image.network(
