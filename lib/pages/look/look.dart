@@ -17,9 +17,11 @@ class LookPage extends StatelessWidget {
     return Stack(
       children: [
         imageView(),
-        Align(
-          alignment: Alignment.topLeft,
-          child: BackBtn(color: Colors.white),
+        SafeArea(
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: BackBtn(color: Colors.white),
+          ),
         ),
       ],
     );
@@ -28,7 +30,7 @@ class LookPage extends StatelessWidget {
   Widget imageView() {
     return PhotoView(
       enableRotation: true,
-      initialScale: PhotoViewComputedScale.contained * .8,
+      initialScale: PhotoViewComputedScale.contained * .6,
       imageProvider: NetworkImage(url),
       loadingBuilder: (context, event) => Center(
         child: SizedBox(
