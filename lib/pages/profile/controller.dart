@@ -30,12 +30,12 @@ class ProfileController extends GetxController {
 
     try {
       Loading.show('更改中');
-      if (Git.isPrivate) throw 'The repo is private!';
+      if (Git.isPrivate) throw '该仓库是私有的，无法修改为其他源!';
 
-      await Git.switchRegistry(isGitHub.value);
+      await Git.switchRegistry(!isGitHub.value);
+
       isGitHub.value = !isGitHub.value;
-
-      message = '更改成功';
+      message = '成功更改为：' + (isGitHub.value ? 'GitHub' : 'JSDelivr');
     } catch (e) {
       message = e.toString();
     } finally {
@@ -51,11 +51,12 @@ class ProfileController extends GetxController {
       Loading.show('更改中');
       await Git.changeRepoVisual();
 
-      message = '更改为: ' + (isPrivate.value ? '私有' : '公开');
+      message = '更改为: ' + (!isPrivate.value ? '私有' : '公开');
+      isPrivate.value = !isPrivate.value;
+      isGitHub.value = true;
     } catch (e) {
       message = '更改失败: ${e.toString()}';
     } finally {
-      isPrivate.value = !isPrivate.value;
       await Loading.close();
       Get.snackbar('仓库可见性', message);
     }

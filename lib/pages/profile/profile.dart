@@ -63,7 +63,7 @@ class ProfilePage extends StatelessWidget {
               color: Colors.white,
             ),
             label: Text(
-              _controller.isPrivate.value ? '私有' : '公开',
+              _controller.isPrivate.value ? '私有仓库' : '公开仓库',
               style: TextStyle(color: Colors.white),
             ),
           ),

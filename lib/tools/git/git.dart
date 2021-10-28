@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:github/github.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -196,8 +197,6 @@ class Git {
   static bool get repoIsPrivate => _private;
 
   static Future<void> switchRegistry(bool isGitHub) async {
-    if (isGitHub == registryIsGitHub) return;
-
     if (isGitHub) {
       _currentRegistry =
           'https://raw.githubusercontent.com/$_owner/$_repo/main/';
@@ -212,20 +211,29 @@ class Git {
   static String get repo => '$_owner/$_repo';
 
   static Future<bool> changeRepoVisual() async {
-    await _git.repositories.editRepository(
-      _slug,
-      name: _repo,
-      description: '',
-      homepage: '',
-      private: !_private,
-      hasIssues: false,
-      hasWiki: false,
-      hasDownloads: false,
-    );
+    try {
+      await _git.repositories.editRepository(
+        _slug,
+        name: _repo,
+        description: '',
+        homepage: '',
+        private: !_private,
+        hasIssues: false,
+        hasWiki: false,
+        hasDownloads: false,
+      );
 
-    _private = !_private;
-    if (_private) {
-      await switchRegistry(true);
+      _private = !_private;
+      if (_private) {
+        await switchRegistry(true);
+      }
+    } on TypeError {
+      _private = !_private;
+      if (_private) {
+        await switchRegistry(true);
+      }
+    } catch (e) {
+      rethrow;
     }
 
     return _private;
