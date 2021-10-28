@@ -90,14 +90,20 @@ class VideoController extends GetxController {
               child: ListView.builder(
                 physics: ScrollX.physics,
                 itemCount: urls.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (context, idx) {
                   return ListTile(
                     leading: CircleAvatar(
-                      child: Text((index + 1).toString()),
+                      backgroundColor:
+                          index.value.isEqual(idx) ? Colors.black : null,
+                      child: Text(
+                        (idx + 1).toString(),
+                        style: TextStyle(
+                          color: index.value.isEqual(idx) ? Colors.white : null,
+                        ),
+                      ),
                     ),
-                    title:
-                        Text(Uri.decodeComponent(urls[index].split('/').last)),
-                    onTap: () => Get.back(result: index),
+                    title: Text(Uri.decodeComponent(urls[idx].split('/').last)),
+                    onTap: () => Get.back(result: idx),
                   );
                 },
               ),
