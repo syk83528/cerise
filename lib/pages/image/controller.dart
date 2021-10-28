@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' show basename;
 
 import 'package:cerise/tools/browser/browser.dart';
 import 'package:cerise/tools/git/git.dart';
@@ -129,9 +130,10 @@ class ImageController extends GetxController {
 
       Loading.show('上传中');
       final data = await image.readAsBytes();
-      final gitpath = 'library/${name.value}/image/${image.name}';
+      final filename = basename(image.path);
+      final gitpath = 'library/${name.value}/image/$filename';
       await Git.createFile(gitpath: gitpath, data: data);
-      snackBar = SnackBar(content: Text('上传成功: ${image.name}'));
+      snackBar = SnackBar(content: Text('上传成功: $filename'));
     } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
     } finally {

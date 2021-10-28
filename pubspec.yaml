@@ -21,6 +21,7 @@ dependencies:
   github: 8.2.3
   gesture_password_widget: 2.0.0
   image_picker: 0.8.4+3
+  path: 1.8.0
   permission_handler: 8.2.5
   photo_view: 0.13.0
   shared_preferences: 2.0.8

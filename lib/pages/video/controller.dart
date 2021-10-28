@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' show basename;
 
 import 'package:cerise/styles/styles.dart';
 import 'package:cerise/tools/browser/browser.dart';
@@ -137,9 +138,10 @@ class VideoController extends GetxController {
 
       Loading.show('上传中');
       final data = await video.readAsBytes();
-      final gitpath = 'library/${name.value}/video/${video.name}';
+      final filename = basename(video.path);
+      final gitpath = 'library/${name.value}/video/$filename';
       await Git.createFile(gitpath: gitpath, data: data);
-      snackBar = SnackBar(content: Text('上传成功: ${video.name}'));
+      snackBar = SnackBar(content: Text('上传成功: $filename'));
     } on UnimplementedError {
       snackBar = SnackBar(content: Text('该平台暂时无法上传视频'));
     } catch (e) {
