@@ -43,7 +43,16 @@ class VideoPage extends StatelessWidget {
                 color: _controller.urls.isEmpty ? Colors.black : Colors.white,
               ),
               Spacer(),
-              _controller.urls.isEmpty ? SizedBox() : _moreOpsView(),
+              _controller.urls.isEmpty
+                  ? IconButton(
+                      tooltip: '上传视频',
+                      onPressed: _controller.selectAndupload,
+                      icon: Icon(
+                        Icons.cloud_upload_rounded,
+                        color: Colors.black,
+                      ),
+                    )
+                  : _moreOpsView(),
             ],
           );
         }),
@@ -56,6 +65,7 @@ class VideoPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
+          tooltip: '切换视频',
           onPressed: _controller.replaceVideo,
           icon: Icon(
             CupertinoIcons.square_list_fill,
@@ -63,6 +73,7 @@ class VideoPage extends StatelessWidget {
           ),
         ),
         IconButton(
+          tooltip: '分享链接',
           onPressed: _controller.shareVideo,
           icon: Icon(
             Icons.share_rounded,
@@ -70,6 +81,7 @@ class VideoPage extends StatelessWidget {
           ),
         ),
         IconButton(
+          tooltip: '在浏览器打开',
           onPressed: _controller.openBrowserVideo,
           icon: Icon(
             Icons.open_in_browser_rounded,
@@ -77,6 +89,7 @@ class VideoPage extends StatelessWidget {
           ),
         ),
         IconButton(
+          tooltip: '上传视频',
           onPressed: _controller.selectAndupload,
           icon: Icon(
             Icons.cloud_upload_rounded,

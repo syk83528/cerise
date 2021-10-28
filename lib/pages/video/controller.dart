@@ -140,6 +140,8 @@ class VideoController extends GetxController {
       final gitpath = 'library/${name.value}/video/${video.name}';
       await Git.createFile(gitpath: gitpath, data: data);
       snackBar = SnackBar(content: Text('上传成功: ${video.name}'));
+    } on UnimplementedError {
+      snackBar = SnackBar(content: Text('该平台暂时无法上传视频'));
     } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
     } finally {
@@ -150,7 +152,7 @@ class VideoController extends GetxController {
 
   Future<XFile?> _selectVideo() async {
     if (GetPlatform.isDesktop) {
-      throw UnimplementedError('Upload videos');
+      throw UnimplementedError();
     }
 
     final picker = ImagePicker();
