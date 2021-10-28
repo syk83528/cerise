@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:cerise/pages/night/night.dart';
 import 'package:cerise/pages/profile/profile.dart';
 import 'package:cerise/pages/store/store.dart';
-import 'package:cerise/pages/work/work.dart';
+import 'package:cerise/pages/world/world.dart';
 
 import 'controller.dart';
 
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         body: IndexedStack(
           index: _controller.currentIndex.value,
           children: [
-            WorkPage(),
+            WorldPage(),
             StorePage(),
             NightPage(),
             ProfilePage(),
