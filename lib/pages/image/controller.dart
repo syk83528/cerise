@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -66,27 +68,52 @@ class ImageController extends GetxController {
     await Shares.share(text);
   }
 
+  Future<void> _copyLink(String url) async {
+    final data = ClipboardData(text: url);
+    await Clipboard.setData(data);
+  }
+
   Future<void> _showOpsBottom(String url) async {
     return await showModalBottomSheet(
       context: Get.context!,
       builder: (context) {
         return SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                color: Colors.black,
-                tooltip: '在浏览器打开',
-                onPressed: () => _openBrowserImage(url),
-                icon: Icon(Icons.open_in_browser_rounded),
-              ),
-              IconButton(
-                color: Colors.black,
-                tooltip: '分享图片',
-                onPressed: () => _shareImage(url),
-                icon: Icon(Icons.share_rounded),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 32,
+              right: 32,
+              top: 16,
+              bottom: 48,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  iconSize: 40,
+                  color: Colors.black,
+                  tooltip: '在浏览器打开',
+                  onPressed: () => _openBrowserImage(url),
+                  icon: Icon(
+                    CupertinoIcons.tv_circle_fill,
+                    size: 40,
+                  ),
+                ),
+                IconButton(
+                  iconSize: 40,
+                  color: Colors.black,
+                  tooltip: '分享图片',
+                  onPressed: () => _shareImage(url),
+                  icon: Icon(CupertinoIcons.arrow_up_right_circle_fill),
+                ),
+                IconButton(
+                  iconSize: 40,
+                  color: Colors.black,
+                  tooltip: '复制链接',
+                  onPressed: () => _copyLink(url),
+                  icon: Icon(CupertinoIcons.link_circle_fill),
+                ),
+              ],
+            ),
           ),
         );
       },
