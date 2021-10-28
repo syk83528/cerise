@@ -21,16 +21,21 @@ class WorldPage extends StatelessWidget {
   Widget bodyView() {
     return Obx(() {
       return ListView.builder(
+        padding: const EdgeInsets.all(12),
         physics: ScrollX.physics,
         itemCount: _controller.items.length,
         itemBuilder: (context, index) {
           final item = _controller.items[index];
-          return UniversalCard(
-            username: item.username,
-            avatar: item.avatar,
-            timestamp: item.timestamp,
-            url: item.url,
-            message: item.message,
+          return InkWell(
+            onTap: () => _controller.onClickItem(index),
+            borderRadius: BorderRadius.circular(16),
+            child: UniversalCard(
+              username: item.username,
+              avatar: item.avatar,
+              timestamp: item.timestamp,
+              url: item.url,
+              message: item.message,
+            ),
           );
         },
       );
@@ -57,7 +62,6 @@ class UniversalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(12),
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

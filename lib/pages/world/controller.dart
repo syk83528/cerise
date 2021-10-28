@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:desktop_webview_window/desktop_webview_window.dart';
 import 'package:get/get.dart';
 
 import 'model.dart';
@@ -24,5 +27,15 @@ class WorldController extends GetxController {
       ),
     );
     items.addAll(temp);
+  }
+
+  Future<void> onClickItem(int index) async {
+    final item = items[index];
+
+    if (GetPlatform.isDesktop) {
+      final config = CreateConfiguration(title: item.username);
+      final webview = await WebviewWindow.create(configuration: config);
+      webview.launch(item.url);
+    }
   }
 }
