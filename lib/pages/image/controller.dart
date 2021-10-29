@@ -134,7 +134,10 @@ class ImageController extends GetxController {
       final gitpath = 'library/${name.value}/image/$filename';
       await Git.createFile(gitpath: gitpath, data: data);
       snackBar = SnackBar(content: Text('上传成功: $filename'));
-    } catch (e) {
+    } on UnimplementedError {
+      snackBar = SnackBar(content: Text('该平台暂时无法上传视频'));
+    }
+    catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
     } finally {
       await Loading.close();
@@ -144,7 +147,7 @@ class ImageController extends GetxController {
 
   Future<XFile?> _selectImage() async {
     if (GetPlatform.isDesktop) {
-      throw UnimplementedError('Upload images');
+      throw UnimplementedError();
     }
 
     final picker = ImagePicker();
