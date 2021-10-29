@@ -21,4 +21,3 @@ jobs:
         with:
           branch: gh-pages
           folder: build/web
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}       
