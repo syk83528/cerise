@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' show basename;
 
 import 'package:cerise/styles/styles.dart';
 import 'package:cerise/tools/browser/browser.dart';
 import 'package:cerise/tools/git/git.dart';
+import 'package:cerise/tools/selector/selector.dart';
 import 'package:cerise/tools/screen/screen.dart';
 import 'package:cerise/tools/shares/shares.dart';
 import 'package:cerise/widgets/loading/loading.dart';
@@ -132,16 +132,19 @@ class VideoController extends GetxController {
   Future<void> selectAndupload() async {
     late final SnackBar snackBar;
 
-    try {
-      final video = await _selectVideo();
-      if (video == null) return;
+    final videos = await _selectVideo();
+    if (videos.isEmpty) return;
 
+    try {
       Loading.show('上传中');
-      final data = await video.readAsBytes();
-      final filename = basename(video.path);
-      final gitpath = 'library/${name.value}/video/$filename';
-      await Git.createFile(gitpath: gitpath, data: data);
-      snackBar = SnackBar(content: Text('上传成功: $filename'));
+
+      for (var video in videos) {
+        final data = await video.readAsBytes();
+        final gitpath = 'library/${name.value}/video/${video.name}';
+        await Git.createFile(gitpath: gitpath, data: data);
+      }
+
+      snackBar = SnackBar(content: Text('上传完成'));
     } on UnimplementedError {
       snackBar = SnackBar(content: Text('该平台暂时无法上传视频'));
     } catch (e) {
@@ -152,12 +155,7 @@ class VideoController extends GetxController {
     }
   }
 
-  Future<XFile?> _selectVideo() async {
-    if (GetPlatform.isDesktop) {
-      throw UnimplementedError();
-    }
-
-    final picker = ImagePicker();
-    return await picker.pickVideo(source: ImageSource.gallery);
+  Future<List<XFile>> _selectVideo() async {
+    return await FileSelector.pickVideos();
   }
 }

@@ -1,14 +1,16 @@
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' show basename;
 
 import 'package:cerise/tools/browser/browser.dart';
 import 'package:cerise/tools/git/git.dart';
+import 'package:cerise/tools/selector/selector.dart';
 import 'package:cerise/tools/shares/shares.dart';
 import 'package:cerise/widgets/loading/loading.dart';
+
+import 'widget.dart';
 
 class ImageController extends GetxController {
   final name = ''.obs;
@@ -124,20 +126,28 @@ class ImageController extends GetxController {
   Future<void> selectAndupload() async {
     late final SnackBar snackBar;
 
-    try {
-      final image = await _selectImage();
-      if (image == null) return;
+    final images = await _selectImage();
+    if (images.isEmpty) return;
 
+    final res = await showDialog<List<XFile>>(
+      context: Get.context!,
+      builder: (context) => AlertDialogPickImages(images: images),
+    );
+    if (res == null || res.isEmpty) return;
+
+    try {
       Loading.show('上传中');
-      final data = await image.readAsBytes();
-      final filename = basename(image.path);
-      final gitpath = 'library/${name.value}/image/$filename';
-      await Git.createFile(gitpath: gitpath, data: data);
-      snackBar = SnackBar(content: Text('上传成功: $filename'));
+
+      for (var image in images) {
+        final data = await image.readAsBytes();
+        final gitpath = 'library/${name.value}/image/${image.name}';
+        await Git.createFile(gitpath: gitpath, data: data);
+      }
+
+      snackBar = SnackBar(content: Text('上传完成'));
     } on UnimplementedError {
-      snackBar = SnackBar(content: Text('该平台暂时无法上传视频'));
-    }
-    catch (e) {
+      snackBar = SnackBar(content: Text('该平台暂时无法上传图片'));
+    } catch (e) {
       snackBar = SnackBar(content: Text(e.toString()));
     } finally {
       await Loading.close();
@@ -145,12 +155,7 @@ class ImageController extends GetxController {
     }
   }
 
-  Future<XFile?> _selectImage() async {
-    if (GetPlatform.isDesktop) {
-      throw UnimplementedError();
-    }
-
-    final picker = ImagePicker();
-    return await picker.pickImage(source: ImageSource.gallery);
+  Future<List<XFile>> _selectImage() async {
+    return await FileSelector.pickImages();
   }
 }

@@ -17,6 +17,9 @@ dependencies:
   desktop_webview_window: 0.0.4
   device_preview: 0.7.5
   fijkplayer: 0.10.0
+  file_selector: 0.8.2+1
+  file_selector_platform_interface: 2.0.2
+  file_selector_windows: 0.0.2+1
   flutter_easyloading: 3.0.3
   get: 4.3.8
   github: 8.2.3
