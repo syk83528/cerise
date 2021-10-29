@@ -14,16 +14,19 @@ class LookPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        imageView(),
-        SafeArea(
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: BackBtn(color: Colors.white),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          imageView(),
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: BackBtn(color: Colors.white),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -34,8 +37,8 @@ class LookPage extends StatelessWidget {
       imageProvider: NetworkImage(url),
       loadingBuilder: (context, event) => Center(
         child: SizedBox(
-          width: 24,
-          height: 24,
+          width: 36,
+          height: 36,
           child: CircularProgressIndicator(
             value: event == null
                 ? 0
