@@ -25,5 +25,5 @@ jobs:
           file: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
           asset_name: uparty_arm64-v8a.apk
           tag: ${{ github.ref }}
-          overwrite: false
+          overwrite: true
           prerelease: false
