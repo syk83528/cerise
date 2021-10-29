@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 import 'init_native.dart' if (dart.library.html) 'init_web.dart';
 
 Future<void> initialize() async {
-  configureApp();
+  await configureApp();
 
   HttpOverrides.global = _HttpOverrides();
 }
 
 Future<void> initializeLate() async {
+  await configureAppLate();
+
   final style = SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarBrightness: Brightness.light,
