@@ -2,8 +2,8 @@ name: build and release apk
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '**'
 
 jobs:
   build:
@@ -26,8 +26,8 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
-          asset_name: cerise_arm64-v8a.apk
-          tag: ${{ github.sha }}
+          asset_name: cerise-${{ github.ref }}-arm64-v8a.apk
+          tag: ${{ github.ref }}
           overwrite: true
           prerelease: false
           body: ${{ steps.date.outputs.date }}
