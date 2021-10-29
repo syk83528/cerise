@@ -48,12 +48,12 @@ class EntryPage extends StatelessWidget {
             repo: _controller2.text.isEmpty ? null : _controller2.text,
             token: _controller3.text.isEmpty ? null : _controller3.text,
           );
-          await Loading.close();
         } catch (e) {
-          await Loading.close();
           final snackBar = SnackBar(content: Text(e.toString()));
           ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
           return;
+        } finally {
+          await Loading.close();
         }
 
         await Get.offAllNamed(RoutesNamespace.home);

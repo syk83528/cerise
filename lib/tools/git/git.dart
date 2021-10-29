@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:flutter/cupertino.dart';
 import 'package:github/github.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,7 +30,7 @@ class Git {
     final ins = await SharedPreferences.getInstance();
     if (owner == null) {
       final temp = ins.getString('owner');
-      if (temp == null || temp.isEmpty) throw 'Please entry owner';
+      if (temp == null || temp.isEmpty) throw '请输入所属用户';
       _owner = temp;
     } else {
       _owner = owner;
@@ -39,7 +38,7 @@ class Git {
     }
     if (repo == null) {
       final temp = ins.getString('repo');
-      if (temp == null || temp.isEmpty) throw 'Please entry repo';
+      if (temp == null || temp.isEmpty) throw '请输入仓库名称';
       _repo = temp;
     } else {
       _repo = repo;
