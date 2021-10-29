@@ -23,7 +23,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
-          asset_name: uparty_${{ github.ref }}_arm64-v8a.apk
+          asset_name: uparty_arm64-v8a.apk
           tag: ${{ github.ref }}
           overwrite: false
           prerelease: false
