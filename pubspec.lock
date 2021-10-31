@@ -346,9 +346,11 @@ packages:
   github:
     dependency: "direct main"
     description:
-      name: github
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: "260cf769e0f3435773a5291fe82d1f9201b97836"
+      resolved-ref: "260cf769e0f3435773a5291fe82d1f9201b97836"
+      url: "https://github.com/ggdream/github.dart"
+    source: git
     version: "8.2.3"
   glob:
     dependency: transitive
@@ -775,13 +777,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.2"
-  tray_manager:
-    dependency: "direct main"
-    description:
-      name: tray_manager
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.0"
   typed_data:
     dependency: transitive
     description:
@@ -845,13 +840,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.2"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.5"
   vector_math:
     dependency: transitive
     description:

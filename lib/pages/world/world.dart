@@ -21,6 +21,7 @@ class WorldPage extends StatelessWidget {
   Widget bodyView() {
     return Obx(() {
       return ListView.builder(
+        // controller: _controller.scrollController,
         padding: const EdgeInsets.all(12),
         physics: ScrollX.physics,
         itemCount: _controller.items.length,

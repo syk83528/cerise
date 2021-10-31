@@ -4,6 +4,8 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/tools/git/git.dart';
+
 class AlertDialogPickImages extends StatefulWidget {
   const AlertDialogPickImages({
     Key? key,
@@ -17,7 +19,7 @@ class AlertDialogPickImages extends StatefulWidget {
 
 class _AlertDialogPickImagesState extends State<AlertDialogPickImages> {
   final List<Uint8List> memorys = [];
-   final List<XFile> images = [];
+  final List<XFile> images = [];
 
   @override
   void initState() {
@@ -82,6 +84,42 @@ class _AlertDialogPickImagesState extends State<AlertDialogPickImages> {
         TextButton(
           onPressed: () => Navigator.of(context).pop(images),
           child: Text('上传'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text('取消'),
+        ),
+      ],
+    );
+  }
+}
+
+class AlertDialogInputView extends StatelessWidget {
+  AlertDialogInputView({Key? key}) : super(key: key);
+
+  final _controller = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(
+        '请输入提交信息',
+        style: TextStyle(color: Colors.black),
+      ),
+      content: TextField(
+        controller: _controller,
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            String text = _controller.text;
+            if (text.isEmpty) {
+              text = '我新提交了图片';
+            }
+            text += '\n------\nhttps://github.com/${Git.repo}';
+
+            Navigator.of(context).pop(text);
+          },
+          child: Text('确定'),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),

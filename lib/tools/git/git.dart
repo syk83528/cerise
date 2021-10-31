@@ -21,6 +21,9 @@ class Git {
   static String _getVideoPath(String name) =>
       '$_library/${Uri.encodeComponent(name)}/video';
 
+  static final _issueStoreSlug = RepositorySlug('ggdream', 'issue');
+  static const _issueStoreNo = 1;
+
   static Future<void> init({
     String? owner,
     String? repo,
@@ -236,5 +239,31 @@ class Git {
     }
 
     return _private;
+  }
+
+  static Future<void> createComment(String text) async {
+    await _git.issues.createComment(_issueStoreSlug, _issueStoreNo, text);
+  }
+
+  static Future<List<Map<String, dynamic>>> getComments({
+    required int page,
+    required int number,
+  }) async {
+    final result = await _git.issues
+        .listCommentsByIssue(_issueStoreSlug, _issueStoreNo, page, number)
+        .toList();
+
+    final List<Map<String, dynamic>> data = [];
+    for (var item in result) {
+      final temp = {
+        'username': item.user?.name,
+        'avatar': item.user?.avatarUrl,
+        'datetime': item.createdAt?.millisecondsSinceEpoch,
+        'message': item.body ?? '',
+      };
+      data.add(temp);
+    }
+
+    return data;
   }
 }

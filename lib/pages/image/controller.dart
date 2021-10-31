@@ -135,13 +135,23 @@ class ImageController extends GetxController {
     );
     if (res == null || res.isEmpty) return;
 
+    final msg = await showDialog<String>(
+      context: Get.context!,
+      builder: (context) => AlertDialogInputView(),
+    );
+    if (msg == null) return;
+
     try {
       Loading.show('上传中');
 
       for (var image in images) {
         final data = await image.readAsBytes();
         final gitpath = 'library/${name.value}/image/${image.name}';
-        await Git.createFile(gitpath: gitpath, data: data);
+        await Git.createFile(gitpath: gitpath, data: data, message: msg);
+      }
+
+      if (!(Git.isPrivate)) {
+        await Git.createComment(msg);
       }
 
       snackBar = SnackBar(content: Text('上传完成'));

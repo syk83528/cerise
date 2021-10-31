@@ -10,6 +10,8 @@ import 'package:cerise/tools/screen/screen.dart';
 import 'package:cerise/tools/shares/shares.dart';
 import 'package:cerise/widgets/loading/loading.dart';
 
+import 'widget.dart';
+
 class VideoController extends GetxController {
   final name = ''.obs;
   final urls = <String>[].obs;
@@ -135,13 +137,23 @@ class VideoController extends GetxController {
     final videos = await _selectVideo();
     if (videos.isEmpty) return;
 
+    final msg = await showDialog<String>(
+      context: Get.context!,
+      builder: (context) => AlertDialogInputView(),
+    );
+    if (msg == null) return;
+
     try {
       Loading.show('上传中');
 
       for (var video in videos) {
         final data = await video.readAsBytes();
         final gitpath = 'library/${name.value}/video/${video.name}';
-        await Git.createFile(gitpath: gitpath, data: data);
+        await Git.createFile(gitpath: gitpath, data: data, message: msg);
+      }
+
+      if (!(Git.isPrivate)) {
+        await Git.createComment(msg);
       }
 
       snackBar = SnackBar(content: Text('上传完成'));
