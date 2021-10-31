@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cerise/tools/git/git.dart';
-
 class AlertDialogInputView extends StatelessWidget {
   AlertDialogInputView({Key? key}) : super(key: key);
 
@@ -23,7 +21,6 @@ class AlertDialogInputView extends StatelessWidget {
             if (text.isEmpty) {
               text = '我新提交了视频';
             }
-            text += '\n------\nhttps://github.com/${Git.repo}';
 
             Navigator.of(context).pop(text);
           },

@@ -135,7 +135,7 @@ class ImageController extends GetxController {
     );
     if (res == null || res.isEmpty) return;
 
-    final msg = await showDialog<String>(
+    String? msg = await showDialog<String>(
       context: Get.context!,
       builder: (context) => AlertDialogInputView(),
     );
@@ -151,6 +151,7 @@ class ImageController extends GetxController {
       }
 
       if (!(Git.isPrivate)) {
+        msg += '\n------\nhttps://github.com/${Git.repo}';
         await Git.createComment(msg);
       }
 

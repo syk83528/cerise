@@ -137,7 +137,7 @@ class VideoController extends GetxController {
     final videos = await _selectVideo();
     if (videos.isEmpty) return;
 
-    final msg = await showDialog<String>(
+    String? msg = await showDialog<String>(
       context: Get.context!,
       builder: (context) => AlertDialogInputView(),
     );
@@ -153,6 +153,7 @@ class VideoController extends GetxController {
       }
 
       if (!(Git.isPrivate)) {
+        msg += '\n------\nhttps://github.com/${Git.repo}';
         await Git.createComment(msg);
       }
 

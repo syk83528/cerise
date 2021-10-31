@@ -4,8 +4,6 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:cerise/tools/git/git.dart';
-
 class AlertDialogPickImages extends StatefulWidget {
   const AlertDialogPickImages({
     Key? key,
@@ -115,7 +113,6 @@ class AlertDialogInputView extends StatelessWidget {
             if (text.isEmpty) {
               text = '我新提交了图片';
             }
-            text += '\n------\nhttps://github.com/${Git.repo}';
 
             Navigator.of(context).pop(text);
           },
