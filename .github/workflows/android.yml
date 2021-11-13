@@ -5,6 +5,9 @@ on:
     tags:
       - '**'
 
+env:
+  TZ: Asia/Shanghai
+
 jobs:
   build:
     runs-on: windows-latest
