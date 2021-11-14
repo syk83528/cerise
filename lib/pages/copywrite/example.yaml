@@ -1,0 +1,10 @@
+name: Section one
+desc: Description of the file
+parts:
+  - image: Description of the image
+    dialogs:
+      - role: 导演
+        data: How are you?
+        meta: Some addition information
+      - role: 主角
+        data: I'm fine.

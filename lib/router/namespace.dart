@@ -6,4 +6,7 @@ class RoutesNamespace {
   static const image = '/image';
   static const video = '/video';
   static const type = '/type';
+  static const night = '/night';
+  static const spider = '/night/spider';
+  static const copywrite = '/night/copywrite';
 }

@@ -124,7 +124,7 @@ class FileSelector {
     );
   }
 
-  Future<void> saveFile({
+  static Future<void> saveFile({
     required String name,
     required Uint8List data,
     List<XTypeGroup>? acceptedTypeGroups,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ColorsX {
   ColorsX._();
 
-  static const primary = green;
+  static const primary = bluePurple;
 
   static const blue = Color(0xff2d91f3);
   static const blueHeight = Color(0xff5646ab);
