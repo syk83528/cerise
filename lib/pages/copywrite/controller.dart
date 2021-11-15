@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:json2yaml/json2yaml.dart';
+import 'package:yaml/yaml.dart';
 
 import 'package:cerise/tools/selector/selector.dart';
 
@@ -13,19 +15,19 @@ import 'widget.dart';
 class CopywritingController extends GetxController {
   final parts = <PartModel>[
     PartModel(
-      image: '',
+      image: '第一幕',
       dialogs: [
-        DialogModel(role: '导演', data: '1'),
-        DialogModel(role: '导演', data: '2'),
-        DialogModel(role: '导演', data: '3'),
+        DialogModel(role: '导演', data: '你在干嘛？'),
+        DialogModel(role: '导演', data: '你在干嘛？'),
+        DialogModel(role: '导演', data: '你在干嘛？'),
       ],
     ),
     PartModel(
-      image: '和咯咯咯放大',
+      image: '第二幕',
       dialogs: [
-        DialogModel(role: '哈喽', data: '1'),
-        DialogModel(role: '哈喽', data: '2'),
-        DialogModel(role: '哈喽', data: '3'),
+        DialogModel(role: '主角', data: '哈哈哈'),
+        DialogModel(role: '主角', data: '哈哈哈'),
+        DialogModel(role: '主角', data: '哈哈哈'),
       ],
     ),
   ].obs;
@@ -103,6 +105,57 @@ class CopywritingController extends GetxController {
       snackBar = SnackBar(content: Text('保存成功'));
     } catch (e) {
       snackBar = SnackBar(content: Text('保存失败：${e.toString()}'));
+    } finally {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    }
+  }
+
+  Future<void> selectAndOpen() async {
+    final group = XTypeGroup(
+      label: '选择文案文件',
+      extensions: ['.yaml'],
+    );
+    final file = await FileSelector.pickFile(acceptedTypeGroups: [group]);
+    if (file == null) return;
+
+    late final SnackBar snackBar;
+    try {
+      final data = await file.readAsString();
+      final mapData = json.decode(json.encode(loadYaml(data)));
+
+      final List<PartModel> temp = [];
+      final partsData = mapData['parts'] as List;
+      for (Map part in partsData) {
+        String image = '';
+        final List<DialogModel> dialogs = [];
+        if (part.containsKey('image')) {
+          image = part['image'];
+        }
+        if (part.containsKey('dialogs')) {
+          final value = part['dialogs'] as List;
+          for (Map item in value) {
+            final dia = DialogModel(
+              role: item['role'] ?? '',
+              data: item['data'] ?? '',
+              meta: item['meta'],
+            );
+            dialogs.add(dia);
+          }
+        }
+
+        final value = PartModel(
+          image: image,
+          dialogs: dialogs,
+        );
+        temp.add(value);
+      }
+
+      parts.clear();
+      parts.addAll(temp);
+
+      snackBar = SnackBar(content: Text('加载成功'));
+    } catch (e) {
+      snackBar = SnackBar(content: Text('加载失败：${e.toString()}'));
     } finally {
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
     }

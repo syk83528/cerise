@@ -207,8 +207,14 @@ class _AppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: true,
       actions: [
         IconButton(
+          onPressed: CopywritingController.to.selectAndOpen,
+          icon: Icon(Icons.cloud_circle_rounded),
+          tooltip: '从本地读取',
+        ),
+        IconButton(
           onPressed: CopywritingController.to.download,
           icon: Icon(Icons.cloud_download_rounded),
+          tooltip: '保存至本地',
         ),
       ],
     );
