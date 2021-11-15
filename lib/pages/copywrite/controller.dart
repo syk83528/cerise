@@ -13,7 +13,7 @@ import 'widget.dart';
 class CopywritingController extends GetxController {
   final parts = <PartModel>[
     PartModel(
-      image: '和咯咯咯放大',
+      image: '',
       dialogs: [
         DialogModel(role: '导演', data: '1'),
         DialogModel(role: '导演', data: '2'),
@@ -100,11 +100,41 @@ class CopywritingController extends GetxController {
         name: '${value['name']}.yaml',
         data: formatYamlValue,
       );
-       snackBar = SnackBar(content: Text('保存成功'));
+      snackBar = SnackBar(content: Text('保存成功'));
     } catch (e) {
-       snackBar = SnackBar(content: Text('保存失败：${e.toString()}'));
+      snackBar = SnackBar(content: Text('保存失败：${e.toString()}'));
     } finally {
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
     }
+  }
+
+  Future<void> addDialog(int index) async {
+    final dialog = parts[index].dialogs;
+    dialog.add(DialogModel(role: '', data: ''));
+  }
+
+  Future<void> deletePart(int index) async {
+    final value = await showDialog<bool>(
+      context: Get.context!,
+      builder: (context) {
+        return DeleteDialog();
+      },
+    );
+
+    if (value == null || !value) return;
+    parts.removeAt(index);
+  }
+
+  Future<void> changeImage(int index) async {
+    final part = CopywritingController.to.parts[index];
+    final value = await showDialog<String>(
+      context: Get.context!,
+      builder: (context) {
+        return InputImageDialog(value: part.image);
+      },
+    );
+
+    if (value == null) return;
+    part.image = value;
   }
 }

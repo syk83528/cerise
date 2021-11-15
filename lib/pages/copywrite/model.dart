@@ -39,7 +39,9 @@ class PartModel {
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> map = {};
 
-    map['image'] = image;
+    if (image.isNotEmpty) {
+      map['image'] = image;
+    }
     map['dialogs'] = List.generate(
       dialogs.length,
       (index) => dialogs[index].toMap(),

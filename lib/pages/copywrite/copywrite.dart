@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:cerise/styles/styles.dart';
@@ -6,7 +7,6 @@ import 'package:cerise/widgets/button/button.dart';
 
 import 'controller.dart';
 import 'model.dart';
-import 'widget.dart';
 
 class CopywritingPage extends StatelessWidget {
   CopywritingPage({Key? key}) : super(key: key);
@@ -100,31 +100,15 @@ class CopywritingCard extends StatelessWidget {
     return ButtonBar(
       children: [
         IconButton(
-          onPressed: () {
-            final dialog = CopywritingController.to.parts[index].dialogs;
-            dialog.add(DialogModel(role: '', data: ''));
-          },
+          onPressed: () => CopywritingController.to.addDialog(index),
           icon: Icon(Icons.add_rounded),
         ),
         IconButton(
-          onPressed: () {
-            CopywritingController.to.parts.removeAt(index);
-          },
+          onPressed: () => CopywritingController.to.deletePart(index),
           icon: Icon(Icons.delete_outline_rounded),
         ),
         IconButton(
-          onPressed: () async {
-            final part = CopywritingController.to.parts[index];
-            final value = await showDialog<String>(
-              context: Get.context!,
-              builder: (context) {
-                return InputImageDialog(value: part.image);
-              },
-            );
-
-            if (value == null) return;
-            part.image = value;
-          },
+          onPressed: () => CopywritingController.to.changeImage(index),
           icon: Icon(Icons.camera_alt_rounded),
         ),
       ],
@@ -198,6 +182,13 @@ class CoptwritingItem extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
+      trailing: IconButton(
+        onPressed: () async {
+          final value = ClipboardData(text: data);
+          await Clipboard.setData(value);
+        },
+        icon: Icon(Icons.copy_rounded),
+      ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
