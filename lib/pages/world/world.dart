@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/router/router.dart';
 import 'package:cerise/styles/styles.dart';
 
 import 'controller.dart';
@@ -124,6 +125,12 @@ class _AppBar extends StatelessWidget with PreferredSizeWidget {
       automaticallyImplyLeading: false,
       title: Text('世界'),
       centerTitle: true,
+      actions: [
+        IconButton(
+          onPressed: () => Get.toNamed(RoutesNamespace.tool),
+          icon: Icon(Icons.work_rounded),
+        ),
+      ],
     );
   }
 

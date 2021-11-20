@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/tools/time_format/time_format.dart';
+
 import 'init_native.dart' if (dart.library.html) 'init_web.dart';
 
 Future<void> initialize() async {
+  TimeFormat.init();
   await configureApp();
 
   HttpOverrides.global = _HttpOverrides();

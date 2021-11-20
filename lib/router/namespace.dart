@@ -7,6 +7,8 @@ class RoutesNamespace {
   static const video = '/video';
   static const type = '/type';
   static const night = '/night';
-  static const spider = '/night/spider';
-  static const copywrite = '/night/copywrite';
+  static const browser = '/night/browser';
+  static const tool = '/tool';
+  static const spider = '/tool/spider';
+  static const copywrite = '/tool/copywrite';
 }

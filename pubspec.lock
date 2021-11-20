@@ -190,6 +190,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.7.5"
+  extended_list_library:
+    dependency: transitive
+    description:
+      name: extended_list_library
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
+  extended_nested_scroll_view:
+    dependency: "direct main"
+    description:
+      name: extended_nested_scroll_view
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -784,6 +798,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.2"
+  timeago:
+    dependency: "direct main"
+    description:
+      name: timeago
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.1.0"
   typed_data:
     dependency: transitive
     description:
@@ -924,6 +945,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.1"
+  waterfall_flow:
+    dependency: "direct main"
+    description:
+      name: waterfall_flow
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1"
   win32:
     dependency: transitive
     description:
