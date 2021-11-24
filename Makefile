@@ -7,6 +7,10 @@ android:
 androidv:
 	@flutter build apk --target-platform android-arm64 --split-per-abi -v
 
+winzip:
+	@flutter build windows -v
+	@test/7z.exe a build/windows/runner/cerise-win-x64.7z build/windows/runner/Release
+
 icon:
 	@flutter pub run flutter_launcher_icons:main
 
