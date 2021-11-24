@@ -42,6 +42,7 @@ class CopywritingPage extends StatelessWidget {
           horizontal: 8,
           vertical: 4,
         ),
+        physics: ScrollX.physics,
         itemCount: _controller.parts.length,
         itemBuilder: (context, index) {
           return CopywritingCard(
