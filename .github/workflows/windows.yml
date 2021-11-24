@@ -16,8 +16,7 @@ jobs:
       - run: flutter pub get
       - run: flutter config --enable-windows-desktop
       - run: flutter build windows -v
-      - run: sudo apt-get update && sudo apt-get install -y zip
-      - run: zip -r build/windows/runner/cerise-${{ github.ref }}-win-x64.zip build/windows/runner/Release
+      - run: test/7z.exe a build/windows/runner/cerise-${{ github.ref }}-win-x64.7z build/windows/runner/Release
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
