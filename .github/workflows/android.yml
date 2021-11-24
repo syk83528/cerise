@@ -5,9 +5,6 @@ on:
     tags:
       - '**'
 
-env:
-  TZ: Asia/Shanghai
-
 jobs:
   build:
     runs-on: windows-latest
@@ -22,9 +19,6 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       - run: flutter build apk --target-platform android-arm64 --split-per-abi -v
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,4 +27,3 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           prerelease: false
-          body: ${{ steps.date.outputs.date }}

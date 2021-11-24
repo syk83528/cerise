@@ -2,11 +2,8 @@ name: build windows
 
 on:
   push:
-    branches:
-      - main
-
-env:
-  TZ: Asia/Shanghai
+    tags:
+      - '**'
 
 jobs:
   build:
@@ -19,3 +16,13 @@ jobs:
       - run: flutter pub get
       - run: flutter config --enable-windows-desktop
       - run: flutter build windows -v
+      - run: sudo apt-get update && sudo apt-get install -y zip
+      - run: zip -r build/windows/runner/cerise-${{ github.ref }}-win-x64.zip build/windows/runner/Release
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/windows/runner/cerise-${{ github.ref }}-win-x64.zip
+          asset_name: cerise-${{ github.ref }}-win-x64.zip
+          tag: ${{ github.ref }}
+          overwrite: true
+          prerelease: false
