@@ -1,5 +1,6 @@
 /// 路由名称集合
 class RoutesNamespace {
+  static const splash = '/splash';
   static const home = '/';
   static const verify = '/verify';
   static const entry = '/entry';

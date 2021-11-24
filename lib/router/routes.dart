@@ -7,6 +7,7 @@ import 'package:cerise/pages/home/home.dart';
 import 'package:cerise/pages/image/image.dart';
 import 'package:cerise/pages/night/night.dart';
 import 'package:cerise/pages/spider/spider.dart';
+import 'package:cerise/pages/splash/splash.dart';
 import 'package:cerise/pages/tool/tool.dart';
 import 'package:cerise/pages/type/type.dart';
 import 'package:cerise/pages/verify/verify.dart';
@@ -15,6 +16,7 @@ import 'package:cerise/pages/video/video.dart';
 import 'namespace.dart';
 
 final List<GetPage> routes = [
+  GetPage(name: RoutesNamespace.splash, page: () => SplashPage()),
   GetPage(name: RoutesNamespace.home, page: () => HomePage()),
   GetPage(name: RoutesNamespace.verify, page: () => VerifyPage()),
   GetPage(name: RoutesNamespace.entry, page: () => EntryPage()),
