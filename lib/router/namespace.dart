@@ -12,4 +12,6 @@ class RoutesNamespace {
   static const tool = '/tool';
   static const spider = '/tool/spider';
   static const copywrite = '/tool/copywrite';
+  static const profile = '/profile';
+  static const setting = '/profile/setting';
 }

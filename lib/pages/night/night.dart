@@ -93,7 +93,7 @@ class _PicturePageState extends State<NightPage>
           controller: tabController,
           indicatorColor: Colors.black,
           labelColor: Colors.black,
-          tabs:const [
+          tabs: const [
             Text('探索'),
             Text('动态'),
           ],
@@ -124,43 +124,43 @@ class _PicturePageState extends State<NightPage>
           scrollDirection: Axis.horizontal,
           children: [
             activeFriendView(
-              name: '王思若颖1',
+              name: '魔咔啦咔1',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/375.jpg',
               uid: 23,
             ),
             activeFriendView(
-              name: '王思若颖2',
+              name: '魔咔啦咔2',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/753.jpg',
               uid: 23,
             ),
             activeFriendView(
-              name: '王思若颖3',
+              name: '魔咔啦咔3',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/951.jpg',
               uid: 23,
             ),
             activeFriendView(
-              name: '王思若颖4',
+              name: '魔咔啦咔4',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/877.jpg',
               uid: 23,
             ),
             activeFriendView(
-              name: '王思若颖5',
+              name: '魔咔啦咔5',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/333.jpg',
               uid: 23,
             ),
             activeFriendView(
-              name: '王思若颖6',
+              name: '魔咔啦咔6',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/441.jpg',
               uid: 23,
             ),
             activeFriendView(
-              name: '王思若颖7',
+              name: '魔咔啦咔7',
               avatar:
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/555.jpg',
               uid: 23,

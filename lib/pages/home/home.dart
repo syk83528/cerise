@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/pages/mine/mine.dart';
 import 'package:cerise/pages/night/night.dart';
-import 'package:cerise/pages/profile/profile.dart';
 import 'package:cerise/pages/store/store.dart';
 import 'package:cerise/pages/world/world.dart';
 
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             WorldPage(),
             StorePage(),
             NightPage(),
-            ProfilePage(),
+            MinePage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

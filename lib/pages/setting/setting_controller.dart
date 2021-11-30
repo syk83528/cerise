@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:cerise/tools/git/git.dart';
 import 'package:cerise/widgets/loading/loading.dart';
 
-class ProfileController extends GetxController {
+class SettingController extends GetxController {
   final username = ''.obs;
   final avatar = ''.obs;
   final isGitHub = false.obs;

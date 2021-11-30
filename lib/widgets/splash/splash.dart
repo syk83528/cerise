@@ -86,7 +86,7 @@ class SplashView extends StatelessWidget {
         ),
       );
     } else if (route != null) {
-      Navigator.of(context).pushNamed(route);
+      Navigator.of(context).popAndPushNamed(route);
     }
   }
 }
