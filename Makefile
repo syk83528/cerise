@@ -1,4 +1,4 @@
-.PHONY: android androidv icon splash deploy msix
+.PHONY: android androidv icon splash deploy msix minor patch
 
 
 android:
@@ -27,3 +27,9 @@ deploy:
 msix:
 	@flutter build windows -v
 	@flutter pub run msix:create
+
+minor:
+	@flutter pub run pub_version_plus:main minor
+
+patch:
+	@flutter pub run pub_version_plus:main patch
