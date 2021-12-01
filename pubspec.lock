@@ -8,6 +8,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "30.0.0"
+  agora_rtc_engine:
+    dependency: "direct main"
+    description:
+      name: agora_rtc_engine
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.0-alpha.2"
   analyzer:
     dependency: transitive
     description:
