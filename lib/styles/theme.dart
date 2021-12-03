@@ -40,12 +40,12 @@ class ThemeX {
     iconTheme: IconThemeData(
       color: ColorsX.grey,
     ),
-    // textButtonTheme: TextButtonThemeData(
-    //   style: TextButton.styleFrom(
-    //     primary: Colors.black,
-    //     onSurface: Colors.white,
-    //   ),
-    // ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: Colors.black,
+        onSurface: Colors.white,
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
