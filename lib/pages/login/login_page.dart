@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/router/router.dart';
 import 'package:cerise/widgets/swiper/swiper.dart';
 
 import 'login_controller.dart';
@@ -160,18 +161,21 @@ class LoginPage extends StatelessWidget {
 
   /// 一键登录
   Widget clickView() {
-    return Container(
-      alignment: Alignment.center,
-      height: 48,
-      decoration: BoxDecoration(
-        color: Color(0xffff2442),
-        borderRadius: BorderRadius.circular(36),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('一键登录', style: _textStyle),
-        ],
+    return GestureDetector(
+      onTap: () => Get.offAllNamed(RoutesNamespace.home),
+      child: Container(
+        alignment: Alignment.center,
+        height: 48,
+        decoration: BoxDecoration(
+          color: Color(0xffff2442),
+          borderRadius: BorderRadius.circular(36),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('一键登录', style: _textStyle),
+          ],
+        ),
       ),
     );
   }
