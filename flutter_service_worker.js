@@ -4,16 +4,16 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "favicon.ico": "7ffd1bda059c23223087b8d1e1f12447",
-"version.json": "432108ee1b2e6284d1b679825e8e25b1",
+"version.json": "71b6586200ed48b5fa0b6b0050fdc61e",
 "manifest.json": "8718638e8bcedfe6127d136b45c4e81c",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"main.dart.js": "7ba2a47979d2ea53d0b9166ff29185e4",
+"main.dart.js": "eb29ef93b094ece6382b5de8454943ba",
 "favicon.png": "5deb661393341d0e381e844a6feb0699",
-"index.html": "6f09720eed1d335613d3f02de1e31205",
-"/": "6f09720eed1d335613d3f02de1e31205",
+"index.html": "58998241a408813c384b9425c39333fa",
+"/": "58998241a408813c384b9425c39333fa",
 "AgoraRtcWrapper.bundle.js": "1716058f7ffb19330bc88e34561f7981",
 "splash/img/light-1x.png": "594f7778227da45232ca2660ad2538ba",
 "splash/img/dark-1x.png": "594f7778227da45232ca2660ad2538ba",
@@ -56,7 +56,7 @@ const RESOURCES = {
 "assets/assets/raw/logo.ico": "7ffd1bda059c23223087b8d1e1f12447",
 "assets/assets/raw/logo.svg": "6aec0dd36408bbb24fa5130f15b1630b",
 "assets/assets/raw/logo.png": "5deb661393341d0e381e844a6feb0699",
-"assets/NOTICES": "d9183607fbcba6637b8effe137618069",
+"assets/NOTICES": "f3e3723ad18c495368dab6d4c3aa066a",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/packages/wakelock_web/assets/no_sleep.js": "7748a45cd593f33280669b29c2c8919a"
 };
