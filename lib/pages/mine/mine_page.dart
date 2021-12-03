@@ -204,14 +204,16 @@ class MinePage extends StatelessWidget {
           children: [
             Spacer(),
             IconButton(
-              onPressed: () {},
+              onPressed: () => Get.toNamed(RoutesNamespace.scan),
               color: Colors.white,
-              icon: Icon(CupertinoIcons.arrow_up_right_circle),
+              icon: Image.asset('assets/icons/scan.png'),
+              tooltip: '二维码',
             ),
             IconButton(
               onPressed: () => Get.toNamed(RoutesNamespace.setting),
               color: Colors.white,
-              icon: Icon(Icons.settings_rounded),
+              icon: Image.asset('assets/icons/setting.png'),
+              tooltip: '应用设置',
             ),
           ],
         ),

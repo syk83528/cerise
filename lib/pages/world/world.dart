@@ -128,7 +128,7 @@ class _AppBar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: () => Get.toNamed(RoutesNamespace.tool),
-          icon: Icon(Icons.work_rounded),
+          icon: Icon(Icons.work_outline_rounded),
         ),
       ],
     );

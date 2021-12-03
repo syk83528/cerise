@@ -25,10 +25,7 @@ class StorePage extends StatelessWidget {
     return FloatingActionButton(
       onPressed: _controller.createEntry,
       tooltip: '添加新项',
-      child: Icon(
-        Icons.add_rounded,
-        color: Colors.white,
-      ),
+      child: Icon(Icons.add_rounded),
     );
   }
 
