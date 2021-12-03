@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ColorsX {
   ColorsX._();
 
-  static const primary = bluePurple;
+  static const primary = Colors.white;
 
   static const blue = Color(0xff2d91f3);
   static const blueHeight = Color(0xff5646ab);
@@ -25,7 +25,7 @@ class ColorsX {
   static const skin = Color(0xfff5dbd0);
   static const orange = Color(0xfffdce84);
   static const grey = Color(0xff9e9e9e);
-  static const greyLight = Color(0xffe0e0e0);
+  static const greyLight = Color(0xfff5f5f5);
   static const black = Color(0xff262626);
   static const blackLight = Color(0xff313131);
 

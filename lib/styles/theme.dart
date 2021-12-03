@@ -8,7 +8,7 @@ class ThemeX {
   );
 
   static final _bottomNavigationBarTheme = BottomNavigationBarThemeData(
-    selectedItemColor: ColorsX.primary,
+    selectedItemColor: ColorsX.bluePurple,
     selectedLabelStyle: TextStyle(fontFamily: 'Girl'),
     unselectedLabelStyle: TextStyle(fontFamily: 'Girl'),
   );
@@ -26,6 +26,7 @@ class ThemeX {
     //   button: TextStyle(fontFamily: 'Girl'),
     // ),
     appBarTheme: AppBarTheme(
+      elevation: .4,
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
