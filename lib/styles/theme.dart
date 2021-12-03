@@ -25,17 +25,15 @@ class ThemeX {
     //   ),
     //   button: TextStyle(fontFamily: 'Girl'),
     // ),
-    // appBarTheme: AppBarTheme(
-      // titleTextStyle: TextStyle(
-      //   color: Colors.black,
-      //   fontSize: 20,
-      //   fontFamily: 'Girl',
-      // ),
-      // backgroundColor: ColorsX.primary,
-      // iconTheme: IconThemeData(
-      //   color: Colors.black,
-      // ),
-    // ),
+    appBarTheme: AppBarTheme(
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+      ),
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
+    ),
     floatingActionButtonTheme: _floatingActionButtonTheme,
     bottomNavigationBarTheme: _bottomNavigationBarTheme,
     iconTheme: IconThemeData(

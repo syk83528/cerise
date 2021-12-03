@@ -59,7 +59,7 @@ class ProfilePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           nickNameView(),
-          SizedBox(height: 16),
+          SizedBox(height: 12),
           Text(
             '天堂梦境一级摄影师~',
             style: TextStyle(
@@ -69,14 +69,14 @@ class ProfilePage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           baseInfoView(),
-          SizedBox(height: 36),
+          SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              CountCardView(count: 10, label: '创建主题'),
-              CountCardView(count: 56, label: '关注主题'),
-              CountCardView(count: 12, label: '她关注的人'),
-              CountCardView(count: 4, label: '关注她的人'),
+              Expanded(child: CountCardView(count: 10, label: '创建主题')),
+              Expanded(child: CountCardView(count: 56, label: '关注主题')),
+              Expanded(child: CountCardView(count: 12, label: '她关注的人')),
+              Expanded(child: CountCardView(count: 4, label: '关注她的人')),
             ],
           ),
           SizedBox(height: 8),
@@ -136,8 +136,8 @@ class ProfilePage extends StatelessWidget {
           onPressed: () {},
           style: TextButton.styleFrom(
             padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 10,
+              horizontal: 12,
+              vertical: 4,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32),
@@ -152,10 +152,7 @@ class ProfilePage extends StatelessWidget {
               ),
               Text(
                 '关注',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),
@@ -189,7 +186,7 @@ class ProfilePage extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        SizedBox(width: 16),
+        SizedBox(width: 8),
         IconButton(
           onPressed: () {},
           icon: Image.asset(
@@ -239,8 +236,7 @@ class CountCardView extends StatelessWidget {
         Text(
           count.toString(),
           style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+            fontSize: 20,
             color: Colors.black,
           ),
         ),
@@ -268,7 +264,7 @@ class ChipCard extends StatelessWidget {
     required String data,
   })  : child = Text(
           data,
-          style: TextStyle(color: Colors.grey, fontSize: 16),
+          style: TextStyle(color: Colors.grey),
         ),
         super(key: key);
 
@@ -282,7 +278,7 @@ class ChipCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
-        vertical: 4,
+        vertical: 2,
       ),
       decoration: BoxDecoration(
         color: Color(0xffe9e9e9),
