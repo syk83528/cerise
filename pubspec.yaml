@@ -1,7 +1,7 @@
 name: cerise
 description: A cross-platform application, provides images and videos bed with GitHub repository and userful gadgets, powered by Flutter.
 publish_to: 'none'
-version: 1.4.1
+version: 1.5.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
