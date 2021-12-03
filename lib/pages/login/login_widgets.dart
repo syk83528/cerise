@@ -69,13 +69,13 @@ class LoginBottomView extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: TextStyle(color: Color(0xff5b92e2)),
+        style: TextStyle(color: Color(0xff5b92e2), fontSize: 12),
         children: [
           agreeView(),
           WidgetSpan(child: SizedBox(width: 8)),
           TextSpan(
             text: '我已阅读并同意',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black, fontSize: 12),
           ),
           TextSpan(
             text: '《用户协议》',

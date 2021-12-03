@@ -73,8 +73,8 @@ class MinePage extends StatelessWidget {
             children: const [
               Expanded(child: CountCardView(count: 10, label: '创建主题')),
               Expanded(child: CountCardView(count: 56, label: '关注主题')),
-              Expanded(child: CountCardView(count: 12, label: '她关注的人')),
-              Expanded(child: CountCardView(count: 4, label: '关注她的人')),
+              Expanded(child: CountCardView(count: 12, label: '她关注的')),
+              Expanded(child: CountCardView(count: 4, label: '关注她的')),
             ],
           ),
           SizedBox(height: 8),
@@ -115,45 +115,36 @@ class MinePage extends StatelessWidget {
   }
 
   Widget followBtn() {
-    return Material(
-      elevation: 3,
-      color: Color(0xffff567a),
-      borderRadius: BorderRadius.circular(32),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(32),
-          gradient: LinearGradient(
-            colors: const [
-              Color(0xffff829c),
-              Color(0xffff567a),
-            ],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(32),
+        gradient: LinearGradient(
+          colors: const [
+            Color(0xffff829c),
+            Color(0xffff567a),
+          ],
+        ),
+      ),
+      alignment: Alignment.center,
+      child: TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(32),
           ),
         ),
-        alignment: Alignment.center,
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 4,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(
+              Icons.add_rounded,
+              color: Colors.white,
             ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32),
+            Text(
+              '关注',
+              style: TextStyle(color: Colors.white),
             ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(
-                Icons.add_rounded,
-                color: Colors.white,
-              ),
-              Text(
-                '关注',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -250,6 +241,8 @@ class CountCardView extends StatelessWidget {
           label,
           style: TextStyle(
             color: Colors.black,
+            fontSize: 12,
+            fontWeight: FontWeight.w200,
           ),
         ),
       ],

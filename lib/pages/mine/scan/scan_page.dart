@@ -107,12 +107,15 @@ class IconCardBtn extends StatelessWidget {
         children: [
           Image.asset(
             asset,
-            width: 80,
+            width: 64,
           ),
           SizedBox(height: 8),
           Text(
             label,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
           ),
         ],
       ),

@@ -64,6 +64,7 @@ class LoginPage extends StatelessWidget {
       text: TextSpan(
         style: TextStyle(
           color: Colors.white.withOpacity(.7),
+          fontSize: 12,
         ),
         children: [
           agreeView(),
