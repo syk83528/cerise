@@ -48,3 +48,5 @@ app.*.map.json
 
 
 test/git_test.dart
+
+google-services.json

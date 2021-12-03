@@ -14,4 +14,5 @@ class RoutesNamespace {
   static const copywrite = '/tool/copywrite';
   static const profile = '/profile';
   static const setting = '/profile/setting';
+  static const login = '/login';
 }

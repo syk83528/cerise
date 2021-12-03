@@ -5,6 +5,7 @@ import 'package:cerise/pages/copywrite/copywrite.dart';
 import 'package:cerise/pages/entry/entry.dart';
 import 'package:cerise/pages/home/home.dart';
 import 'package:cerise/pages/image/image.dart';
+import 'package:cerise/pages/login/login.dart';
 import 'package:cerise/pages/night/night.dart';
 import 'package:cerise/pages/profile/profile.dart';
 import 'package:cerise/pages/setting/setting.dart';
@@ -32,4 +33,5 @@ final List<GetPage> routes = [
   GetPage(name: RoutesNamespace.browser, page: () => BrowserPage()),
   GetPage(name: RoutesNamespace.profile, page: () => ProfilePage()),
   GetPage(name: RoutesNamespace.setting, page: () => SettingPage()),
+  GetPage(name: RoutesNamespace.login, page: () => LoginPage()),
 ];

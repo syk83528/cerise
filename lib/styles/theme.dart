@@ -18,34 +18,35 @@ class ThemeX {
   );
 
   static final global = ThemeData.from(colorScheme: colorScheme).copyWith(
-    textTheme: TextTheme(
-      subtitle1: TextStyle(
-        fontFamily: 'Girl',
-        color: Colors.black,
-      ),
-      button: TextStyle(fontFamily: 'Girl'),
-    ),
-    appBarTheme: AppBarTheme(
-      titleTextStyle: TextStyle(
-        color: Colors.black,
-        fontSize: 20,
-        fontFamily: 'Girl',
-      ),
-      backgroundColor: ColorsX.primary,
-      iconTheme: IconThemeData(
-        color: Colors.black,
-      ),
-    ),
+    // textTheme: TextTheme(
+    //   subtitle1: TextStyle(
+    //     fontFamily: 'Girl',
+    //     color: Colors.black,
+    //   ),
+    //   button: TextStyle(fontFamily: 'Girl'),
+    // ),
+    // appBarTheme: AppBarTheme(
+      // titleTextStyle: TextStyle(
+      //   color: Colors.black,
+      //   fontSize: 20,
+      //   fontFamily: 'Girl',
+      // ),
+      // backgroundColor: ColorsX.primary,
+      // iconTheme: IconThemeData(
+      //   color: Colors.black,
+      // ),
+    // ),
     floatingActionButtonTheme: _floatingActionButtonTheme,
     bottomNavigationBarTheme: _bottomNavigationBarTheme,
     iconTheme: IconThemeData(
       color: ColorsX.grey,
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        primary: Colors.black,
-      ),
-    ),
+    // textButtonTheme: TextButtonThemeData(
+    //   style: TextButton.styleFrom(
+    //     primary: Colors.black,
+    //     onSurface: Colors.white,
+    //   ),
+    // ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

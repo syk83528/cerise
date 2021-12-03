@@ -23,6 +23,7 @@ dependencies:
   file_selector_platform_interface: 2.0.2
   file_selector_windows: 0.0.2+1
   flutter_easyloading: 3.0.3
+  flutter_markdown: 0.6.8
   get: 4.5.1
   github:
     git:
@@ -65,9 +66,13 @@ flutter:
       fonts:
         - asset: assets/fonts/girl.ttf
   assets:
-    - assets/image/
     - assets/raw/
     - assets/icons/
+    - assets/data/json/
+    - assets/data/text/
+    - assets/images/
+    - assets/images/login/
+    - assets/images/scan/
 
 flutter_native_splash:
   color: '#ffffff'
