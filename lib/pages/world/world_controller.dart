@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:cerise/tools/browser/browser.dart';
 import 'package:cerise/tools/git/git.dart';
 
-import 'model.dart';
+import 'world_model.dart';
 
 class WorldController extends GetxController {
   final items = <WorldItemModel>[].obs;
@@ -63,7 +63,7 @@ class WorldController extends GetxController {
     items.addAll(tempItems);
   }
 
-  Future<void> onClickItem(int index) async {
+  Future<void> onPressItem(int index) async {
     final item = items[index];
 
     if (GetPlatform.isDesktop) {

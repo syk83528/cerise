@@ -17,4 +17,5 @@ class RoutesNamespace {
   static const scan = '/profile/scan';
   static const code = '/profile/code';
   static const login = '/login';
+  static const worldItemDetail = '/world/item/detail';
 }

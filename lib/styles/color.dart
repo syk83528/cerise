@@ -15,7 +15,7 @@ class ColorsX {
   static const greenLight = Color(0xffa5d6a7);
   static const greenHeight = Color(0xff009688);
   static const pink = Color(0xffd3778e);
-  static const red = Color(0xfff9564b);
+  static const red =  Color(0xffff2442);
   static const redLight = Color(0xffffdddc);
   static const purple = Color(0xff986ffa);
   static const purpleHeight = Color(0xff8559a1);

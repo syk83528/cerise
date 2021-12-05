@@ -16,6 +16,7 @@ import 'package:cerise/pages/tool/tool.dart';
 import 'package:cerise/pages/type/type.dart';
 import 'package:cerise/pages/verify/verify.dart';
 import 'package:cerise/pages/video/video.dart';
+import 'package:cerise/pages/world/world.dart';
 
 import 'namespace.dart';
 
@@ -37,4 +38,5 @@ final List<GetPage> routes = [
   GetPage(name: RoutesNamespace.scan, page: () => ScanPage()),
   GetPage(name: RoutesNamespace.code, page: () => QRCodePage()),
   GetPage(name: RoutesNamespace.login, page: () => LoginPage()),
+  GetPage(name: RoutesNamespace.worldItemDetail, page: () => ItemDetailPage()),
 ];
