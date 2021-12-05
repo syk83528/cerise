@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "favicon.ico": "7ffd1bda059c23223087b8d1e1f12447",
-"version.json": "c936698f78f044f86bbca3d970988094",
+"version.json": "2e7cd542167c21448f69459e593945af",
 "manifest.json": "8718638e8bcedfe6127d136b45c4e81c",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
@@ -12,8 +12,8 @@ const RESOURCES = {
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "main.dart.js": "d831d570649e5aa4180131c1f7a649a0",
 "favicon.png": "5deb661393341d0e381e844a6feb0699",
-"index.html": "78edd3679680f1f5b7d2f8c719ad5c0b",
-"/": "78edd3679680f1f5b7d2f8c719ad5c0b",
+"index.html": "bb1516b3c3a6c10039135e5df96c426a",
+"/": "bb1516b3c3a6c10039135e5df96c426a",
 "AgoraRtcWrapper.bundle.js": "1716058f7ffb19330bc88e34561f7981",
 "splash/img/light-1x.png": "594f7778227da45232ca2660ad2538ba",
 "splash/img/dark-1x.png": "594f7778227da45232ca2660ad2538ba",
