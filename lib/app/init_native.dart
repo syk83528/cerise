@@ -1,6 +1,7 @@
-// import 'dart:io';
+import 'dart:io';
 
 // import 'package:cerise/config/config.dart';
+import 'package:cerise/tools/notify/notify.dart';
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:get/get.dart';
 // import 'package:path/path.dart';
@@ -10,6 +11,9 @@ import 'package:get/get.dart';
 Future<void> configureApp() async {
   if (GetPlatform.isDesktop) {
     DartVLC.initialize();
+  }
+  if (!Platform.isWindows) {
+    AppNotify.init();
   }
 }
 

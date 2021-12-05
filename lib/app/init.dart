@@ -9,6 +9,8 @@ import 'package:cerise/tools/time_format/time_format.dart';
 import 'init_native.dart' if (dart.library.html) 'init_web.dart';
 
 Future<void> initialize() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   TimeFormat.init();
   await configureApp();
 

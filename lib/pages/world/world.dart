@@ -1,3 +1,4 @@
+import 'package:cerise/tools/notify/notify.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,12 @@ class WorldPage extends StatelessWidget {
     return Scaffold(
       appBar: _AppBar(),
       body: bodyView(),
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'world',
+        onPressed: () {
+          AppNotify.show(title: 'title', body: 'body');
+        },
+      ),
     );
   }
 
