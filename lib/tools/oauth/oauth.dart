@@ -11,19 +11,21 @@ export 'enum.dart';
 class OAuth {
   static Future<oauth2.Client?> login() async {
     final grant = oauth2.AuthorizationCodeGrant(
-        '',
-        Uri.parse('https://github.com/login/oauth/authorize?scope=repo,user'),
-        Uri.parse('https://github.com/login/oauth/access_token'),
-        secret: '', getParameters: (dynamic contentType, String body) {
-      final value = Uri.decodeQueryComponent(body);
-      final Map<String, dynamic> data = {};
-      for (var item in value.split('&')) {
-        final temp = item.split('=');
-        data[temp[0]] = temp[1];
-      }
+      '',
+      Uri.parse('https://github.com/login/oauth/authorize?scope=repo,user'),
+      Uri.parse('https://github.com/login/oauth/access_token'),
+      secret: '',
+      getParameters: (dynamic contentType, String body) {
+        final value = Uri.decodeQueryComponent(body);
+        final Map<String, dynamic> data = {};
+        for (var item in value.split('&')) {
+          final temp = item.split('=');
+          data[temp[0]] = temp[1];
+        }
 
-      return data;
-    });
+        return data;
+      },
+    );
     final authorizationUrl = grant
         .getAuthorizationUrl(Uri.parse('https://ggdream.github.io/callback'));
     final responseUrl = await _getResponseUrl(
