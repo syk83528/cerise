@@ -139,23 +139,26 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget thirdView() {
-    return Container(
-      alignment: Alignment.center,
-      height: 48,
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(.6),
-        borderRadius: BorderRadius.circular(36),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/wechatop.png',
-            width: 25,
-          ),
-          SizedBox(width: 4),
-          Text('微信登录', style: _textStyle),
-        ],
+    return GestureDetector(
+      onTap: _controller.loginWithGitHub,
+      child: Container(
+        alignment: Alignment.center,
+        height: 48,
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(.6),
+          borderRadius: BorderRadius.circular(36),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/wechatop.png',
+              width: 25,
+            ),
+            SizedBox(width: 4),
+            Text('微信登录', style: _textStyle),
+          ],
+        ),
       ),
     );
   }
@@ -163,7 +166,7 @@ class LoginPage extends StatelessWidget {
   /// 一键登录
   Widget clickView() {
     return GestureDetector(
-      onTap: () => Get.offAllNamed(RoutesNamespace.home),
+      onTap: () => Get.offAllNamed(RoutesNamespace.entry),
       child: Container(
         alignment: Alignment.center,
         height: 48,

@@ -191,7 +191,12 @@ class Git {
 
   static Future<List<String?>> getProfile() async {
     final user = await _git.users.getCurrentUser();
-    return [user.name, user.avatarUrl];
+    return [user.login, user.avatarUrl];
+  }
+
+  static Future<String?> getUsernameByAT(String token) async {
+    final user = await GitHub(auth: Authentication.withToken(token)).users.getCurrentUser();
+    return user.login;
   }
 
   static bool get registryIsGitHub =>

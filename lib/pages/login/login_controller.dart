@@ -1,9 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'package:cerise/router/router.dart';
+import 'package:cerise/tools/git/git.dart';
+import 'package:cerise/tools/toast/toast.dart';
 import 'package:cerise/tools/oauth/oauth.dart';
+import 'package:cerise/widgets/loading/loading.dart';
 import 'package:cerise/widgets/mdshower/mdshower.dart';
 
 import 'login_widgets.dart';
@@ -12,6 +15,37 @@ class LoginController extends GetxController {
   final hasReadProtocol = false.obs;
 
   static LoginController get to => Get.find();
+
+  Future<void> loginWithGitHub() async {
+    final client = await OAuth.login();
+    if (client == null) {
+      Toast.showText('登陆失败');
+      return;
+    }
+
+    final accessToken = client.credentials.accessToken;
+    await _gotoNextPage(accessToken);
+  }
+
+  Future<void> _gotoNextPage(String accessToken) async {
+    try {
+      Loading.show('登陆中');
+      final username = await Git.getUsernameByAT(accessToken);
+
+      final Map<String, String> params = {
+        'username': username!,
+        'access_token': accessToken,
+      };
+      Get.offAllNamed(
+        RoutesNamespace.entry,
+        parameters: params,
+      );
+    } catch (e) {
+      Toast.showText('登陆失败');
+    } finally {
+      await Loading.close();
+    }
+  }
 
   Future<void> otherLoginWays() async {
     final OAuthEnum? lEnum = await Get.bottomSheet<OAuthEnum>(
