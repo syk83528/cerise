@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:cerise/router/router.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +16,7 @@ class MinePage extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.network(
-              'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/${Random().nextInt(888) + 99}.jpg',
+              'https://cdn.jsdelivr.net/gh/mocaraka/assets/picture/960.jpg',
               fit: BoxFit.cover,
             ),
           ),

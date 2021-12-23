@@ -9,8 +9,11 @@ class EntryPage extends StatelessWidget {
   EntryPage({Key? key}) : super(key: key);
 
   final _controller1 = TextEditingController(text: Get.parameters['username']);
-  final _controller2 = TextEditingController(text: 'assets');
-  final _controller3 = TextEditingController(text: Get.parameters['access_token']);
+  final _controller2 = TextEditingController(
+    text: Get.parameters['access_token'] == null ? null : 'assets',
+  );
+  final _controller3 =
+      TextEditingController(text: Get.parameters['access_token']);
 
   @override
   Widget build(BuildContext context) {

@@ -81,6 +81,10 @@ class AuthorizePage extends StatelessWidget {
             }
             return NavigationDecision.navigate;
           },
+          onWebViewCreated: (controller) async {
+            await controller.clearCache();
+            await CookieManager().clearCookies();
+          },
         ),
       ),
     );

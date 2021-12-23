@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
     return Positioned(
       left: 16,
       right: 16,
-      bottom: 96,
+      bottom: 32,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -153,7 +153,7 @@ class LoginPage extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/wechatop.png',
-              width: 25,
+              width: 24,
             ),
             SizedBox(width: 4),
             Text('微信登录', style: _textStyle),
@@ -208,7 +208,7 @@ class LoginPage extends StatelessWidget {
   }
 
   final _textStyle = TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     color: Colors.white,
   );
 }

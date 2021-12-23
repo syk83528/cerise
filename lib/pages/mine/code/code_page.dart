@@ -38,16 +38,14 @@ class QRCodePage extends StatelessWidget {
   }
 
   Widget captureView() {
-    return Card(
-      child: Container(
-        width: 320,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 30,
-          vertical: 12,
-        ),
-        color: ColorsX.bluePurple,
-        child: coreView(),
+    return Container(
+      width: 320,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 30,
+        vertical: 12,
       ),
+      color: ColorsX.bluePurple,
+      child: coreView(),
     );
   }
 
@@ -110,11 +108,19 @@ class QRCodePage extends StatelessWidget {
                 children: const [
                   Text(
                     '魔咔啦咔',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
+                  SizedBox(height: 8),
                   Text(
-                    '樱桃号：979779',
-                    style: TextStyle(fontWeight: FontWeight.w300),
+                    '樱桃号: 979779',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

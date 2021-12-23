@@ -21,11 +21,12 @@ class CodeController extends GetxController {
 
       final imageFile = await File('$path/qrcode.png').create();
       await imageFile.writeAsBytes(data, flush: true);
-      await Share.shareFiles(['$path/qrcode.png'], subject: '二维码分享', text: '魔咔啦咔的二维码');
+      await Share.shareFiles(['$path/qrcode.png'],
+          subject: '二维码分享', text: '魔咔啦咔的二维码');
     } on UnimplementedError {
-      Toast.showText('该平台暂时无法分享文件，文件已保存至：$path/qrcode.png');
+      Toast.showText('该平台暂时无法分享文件，文件已保存至: $path/qrcode.png');
     } catch (e) {
-      Toast.showText('分享失败，原因是：${e.toString()}');
+      Toast.showText('分享失败，原因是: ${e.toString()}');
     }
   }
 }

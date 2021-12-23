@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 class ItemDetailController extends GetxController {
   final title = '沸羊羊，你吃饭能不能斯文一点？'.obs;
   final content = '''今天有美羊羊内味了吗？
-哈哈哈哈哈突然发现自己的卡通头饰真的很多！
+哈哈哈哈哈突然发现自己的卡通头饰真的很多!
 朋友看了说动物园开会都没有我这么齐
-不过冬天嘛！本来穿得就单调，毛衣配饰还是得活泼可爱一些～
-穿上整个人都开心了嘎嘎！
-👔：诗凡黎
-🐑：鹿系少女手作
-🐻：朋友送滴
+不过冬天嘛! 本来穿得就单调，毛衣配饰还是得活泼可爱一些～
+穿上整个人都开心了嘎嘎!
+👔:诗凡黎
+🐑:鹿系少女手作
+🐻:朋友送滴
 #来拍照了'''
       .obs;
   final images = <String>[

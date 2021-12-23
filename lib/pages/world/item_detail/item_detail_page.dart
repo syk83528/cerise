@@ -6,6 +6,7 @@ import 'package:cerise/styles/styles.dart';
 import 'package:cerise/widgets/button/button.dart';
 
 import 'item_detail_controller.dart';
+import 'item_detail_widgets.dart';
 
 class ItemDetailPage extends StatelessWidget {
   ItemDetailPage({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class ItemDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: _AppBar(),
       body: bodyView(),
     );
@@ -97,6 +99,17 @@ class ItemDetailPage extends StatelessWidget {
               );
             },
           ),
+          SizedBox(height: 30),
+          Center(
+            child: Text(
+              '- THE END -',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          SizedBox(height: 16),
         ],
       ),
     );
@@ -183,18 +196,23 @@ class ItemDetailPage extends StatelessWidget {
 
   Widget textFieldMockView() {
     return Expanded(
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Text(
-          '说些什么叭...',
-          maxLines: 1,
-          style: TextStyle(color: Colors.grey[700], fontSize: 16),
+      child: GestureDetector(
+        onTap: () {
+          TextInputX.show(Get.context!);
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Text(
+            '说些什么叭...',
+            maxLines: 1,
+            style: TextStyle(color: Colors.grey[700], fontSize: 16),
+          ),
         ),
       ),
     );
